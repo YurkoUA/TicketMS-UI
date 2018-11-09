@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AfominDotCom.NgProjectTemplate.Server" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include=".gitignore" />
     <None Include="README.md" />
     <None Include="package.json" />
   </ItemGroup>
