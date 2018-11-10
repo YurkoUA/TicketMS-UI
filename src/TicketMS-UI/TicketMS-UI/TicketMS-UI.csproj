@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <None Remove=".gitignore" />
+    <None Remove="src\models\domain\role.ts" />
+    <None Remove="src\models\domain\user.ts" />
+    <None Remove="src\models\signin-request.model.ts" />
+    <None Remove="src\models\signin-response.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +21,13 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="package.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="src\models\domain\role.ts" />
+    <TypeScriptCompile Include="src\models\domain\user.ts" />
+    <TypeScriptCompile Include="src\models\signin-request.model.ts" />
+    <TypeScriptCompile Include="src\models\signin-response.model.ts" />
   </ItemGroup>
 
   <PropertyGroup>
