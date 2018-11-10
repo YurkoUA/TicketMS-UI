@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BaseRestApiService } from '../core/api/base-rest-api.service';
-import { SignInRequest } from '../models/signin-request.model';
 import { Observable } from 'rxjs';
-import { SignInResponse } from '../models/signin-response.model';
-import { User } from '../models/domain/user';
+import { BaseRestApiService } from '../../core/api/base-rest-api.service';
+import { SignInResponse } from '../../models/signin-response.model';
+import { SignInRequest } from '../../models/signin-request.model';
+import { User } from '../../models/domain/user';
 
 @Injectable()
 export class AccountService extends BaseRestApiService {

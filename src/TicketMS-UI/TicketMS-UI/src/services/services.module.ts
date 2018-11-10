@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { AccountService } from './account.service';
+import { AuthenticationService } from './authentication.service';
+import { AccountService } from './api-services/account.service';
 
 @NgModule({
     providers: [
-        AccountService
+        AccountService,
+        AuthenticationService
     ]
 })
 export class ServicesModule {
