@@ -1,0 +1,14 @@
+<ul class="navbar-nav mr-auto" *ngIf="isAuthenticated">
+    <li>
+        <a class="nav-link">{{userName}}</a>
+    </li>
+    <li>
+        <a class="nav-link" (click)="signOut()">Вийти</a>
+    </li>
+</ul>
+
+<ul class="navbar-nav mr-auto" *ngIf="!isAuthenticated">
+    <li>
+        <a [routerLink]="['sign-in']" class="nav-link">Увійти</a>
+    </li>
+</ul>

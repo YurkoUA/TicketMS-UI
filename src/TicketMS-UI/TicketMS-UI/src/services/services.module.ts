@@ -6,6 +6,8 @@ import { AccountService } from './api-services/account.service';
     providers: [
         AccountService,
         AuthenticationService
+    ],
+    imports: [
     ]
 })
 export class ServicesModule {

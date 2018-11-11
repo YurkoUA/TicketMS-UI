@@ -1,6 +1,6 @@
 import { HttpResponse, HttpClient } from '@angular/common/http';
-import 'rxjs/add/observable/empty';
 import { Observable } from 'rxjs';
+import { baseUrl } from './../../app/app.config';
 
 export class BaseApiService {
     constructor(protected http: HttpClient) {
@@ -8,7 +8,7 @@ export class BaseApiService {
     }
 
     protected get baseUrl() {
-        return '';
+        return baseUrl;
     }
 
     protected extractData<T>(resp: HttpResponse<T>): any {

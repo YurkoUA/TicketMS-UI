@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove=".gitignore" />
+    <None Remove="src\app\app.config.ts" />
+    <None Remove="src\models\access-token.model.ts" />
     <None Remove="src\models\domain\role.ts" />
     <None Remove="src\models\domain\user.ts" />
     <None Remove="src\models\signin-request.model.ts" />
@@ -24,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\app.config.ts" />
+    <TypeScriptCompile Include="src\models\access-token.model.ts" />
     <TypeScriptCompile Include="src\models\domain\role.ts" />
     <TypeScriptCompile Include="src\models\domain\user.ts" />
     <TypeScriptCompile Include="src\models\signin-request.model.ts" />

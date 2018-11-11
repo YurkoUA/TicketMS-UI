@@ -5,5 +5,5 @@ export class User {
     Email: string;
     UserName: string;
     TelegramId?: string;
-    Role: Role;
+    Role: Role = new Role();
 }

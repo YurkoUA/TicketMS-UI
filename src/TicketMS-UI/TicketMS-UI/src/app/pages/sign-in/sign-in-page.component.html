@@ -1,0 +1,22 @@
+<form #signInForm="ngForm" class="col-md-6">
+    <div class="form-group">
+        <label for="Login">Логін</label>
+        <input type="email" id="Login" name="Login" class="form-control" required placeholder="Введіть Email або ім'я"
+               [(ngModel)]="model.Login" #_login="ngModel" />
+        <span class="text-danger" *ngIf="_login.invalid && _login.touched">Необхідно ввести логін.</span>
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Пароль</label>
+        <input type="password" id="Password" name="Password" class="form-control" required
+               [(ngModel)]="model.Password" #_password="ngModel" />
+        <span class="text-danger" *ngIf="_password.invalid && _password.touched">Необхідно ввести пароль.</span>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary"
+                (click)="signIn()" [disabled]="signInForm.invalid">
+            Увійти
+        </button>
+    </div>
+</form>
