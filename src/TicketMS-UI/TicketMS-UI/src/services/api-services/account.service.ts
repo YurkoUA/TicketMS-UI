@@ -9,17 +9,15 @@ import { HeadersManagerService } from '../../util-services/headers-manager.servi
 
 @Injectable()
 export class AccountService extends BaseRestApiService {
-    private entityUrl: string = '/api/Account/';
-
     constructor(http: HttpClient, headersService: HeadersManagerService) {
-        super(http, headersService);
+        super('/api/Account/', http, headersService);
     }
 
     signIn(model: SignInRequest): Observable<SignInResponse> {
-        return this.post(this.entityUrl + 'SignIn', model);
+        return this.post('SignIn', model);
     }
 
     getAccount(): Observable<User> {
-        return this.get(this.entityUrl);
+        return this.get('');
     }
 }
