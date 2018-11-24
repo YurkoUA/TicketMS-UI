@@ -1,0 +1,24 @@
+<h2>Серії</h2>
+<hr />
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Пачок</th>
+            <th>Квитків</th>
+            <th>Примітка</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let s of seriesList">
+            <td>{{ s.Id }}</td>
+            <td><a [routerLink]="['/serial/details', s.Id]">{{ s.Name }}</a></td>
+            <td>{{ s.PackagesCount }}</td>
+            <td>{{ s.TicketsCount }}</td>
+            <td>{{ s.Note }}</td>
+        </tr>
+    </tbody>
+</table>
