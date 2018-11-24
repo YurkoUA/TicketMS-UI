@@ -8,6 +8,7 @@ import { CoreModule } from '../core/core.module';
 import { AuthorizeGuard } from '../core/guards/authorize.guard';
 import { LogoutGuard } from '../core/guards/log-out.guard';
 import { SeriesListPageComponent } from './pages/serial/series-list/series-list-page.component';
+import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
 
 const routes: Routes = [
     { path: '', component: MainPageComponent },
@@ -15,6 +16,8 @@ const routes: Routes = [
     { path: 'log-out', component: MainPageComponent, canActivate: [AuthorizeGuard, LogoutGuard] },
 
     { path: 'serial', component: SeriesListPageComponent },
+
+    { path: 'color', component: ColorsListPageComponent },
 
     { path: '**', redirectTo: '/' }
 ];

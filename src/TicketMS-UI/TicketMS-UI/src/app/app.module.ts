@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SeriesListPageComponent } from './pages/serial/series-list/series-list-page.component';
+import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,8 @@ import { SeriesListPageComponent } from './pages/serial/series-list/series-list-
         SignInPageComponent,
 
         SeriesListPageComponent,
+
+        ColorsListPageComponent,
 
         AuthPanelComponent
     ],

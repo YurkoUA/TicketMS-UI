@@ -1,0 +1,22 @@
+<h2>Кольори</h2>
+<hr />
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Пачок</th>
+            <th>Квитків</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let c of colorsList">
+            <td>{{ c.Id }}</td>
+            <td><a [routerLink]="['/color/details', c.Id]">{{ c.Name }}</a></td>
+            <td>{{ c.PackagesCount }}</td>
+            <td>{{ c.TicketsCount }}</td>
+        </tr>
+    </tbody>
+</table>
