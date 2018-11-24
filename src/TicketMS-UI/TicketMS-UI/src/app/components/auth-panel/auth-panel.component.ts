@@ -22,6 +22,7 @@ export class AuthPanelComponent {
     }
 
     signOut(): void {
-        this.authService.resetAuthentication();
+        if (confirm('Are you sure?') === true)
+            this.authService.resetAuthentication();
     }
 }

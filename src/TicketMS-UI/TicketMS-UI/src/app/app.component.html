@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Ticket MS</a>
+        <a class="navbar-brand" [routerLink]="['/']">Ticket MS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,22 +8,22 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Кольори</a>
+                    <a class="nav-link" [routerLink]="['/']">Кольори</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Серії</a>
+                    <a class="nav-link" [routerLink]="['/']">Серії</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Пачки</a>
+                    <a class="nav-link" [routerLink]="['/']">Пачки</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Квитки</a>
+                    <a class="nav-link" [routerLink]="['/']">Квитки</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Статистика</a>
+                    <a class="nav-link" [routerLink]="['/']">Статистика</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Звіти</a>
+                    <a class="nav-link" [routerLink]="['/']">Звіти</a>
                 </li>
             </ul>
 
@@ -34,9 +34,6 @@
 
 <!-- Begin page content -->
 <main role="main" class="container">
-    <h1 class="mt-5">Ticket Management System</h1>
-    <p class="lead">Система управління та обліку приватною колекцією трамвайних та тролейбусних квитків з міста Дніпро.</p>
-
     <router-outlet></router-outlet>
 </main>
 

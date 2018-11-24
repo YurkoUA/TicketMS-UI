@@ -10,10 +10,12 @@ import { ServicesModule } from '../services/services.module';
 import { UtilServicesModule } from '../util-services/util-services.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from '../core/core.module';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        MainPageComponent,
         SignInPageComponent,
 
         AuthPanelComponent

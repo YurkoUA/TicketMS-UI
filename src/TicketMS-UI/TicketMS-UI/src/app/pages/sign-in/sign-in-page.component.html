@@ -1,3 +1,6 @@
+<h2>Логін</h2>
+<hr />
+
 <form #signInForm="ngForm" class="col-md-6">
     <div class="form-group">
         <label for="Login">Логін</label>
@@ -8,7 +11,7 @@
 
     <div class="form-group">
         <label for="Password">Пароль</label>
-        <input type="password" id="Password" name="Password" class="form-control" required
+        <input type="password" id="Password" name="Password" class="form-control" required placeholder="Введіть пароль"
                [(ngModel)]="model.Password" #_password="ngModel" />
         <span class="text-danger" *ngIf="_password.invalid && _password.touched">Необхідно ввести пароль.</span>
     </div>
