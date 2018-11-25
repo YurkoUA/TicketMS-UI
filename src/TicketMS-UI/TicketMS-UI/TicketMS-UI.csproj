@@ -9,6 +9,8 @@
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="src\app\app.config.ts" />
+    <None Remove="src\app\pages\base-modal.ts" />
+    <None Remove="src\app\pages\base-page.ts" />
     <None Remove="src\core\guards\anonymous.guard.ts" />
     <None Remove="src\core\guards\authorize.guard.ts" />
     <None Remove="src\core\guards\log-out.guard.ts" />
@@ -33,6 +35,8 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app.config.ts" />
+    <TypeScriptCompile Include="src\app\pages\base-modal.ts" />
+    <TypeScriptCompile Include="src\app\pages\base-page.ts" />
     <TypeScriptCompile Include="src\core\guards\anonymous.guard.ts" />
     <TypeScriptCompile Include="src\core\guards\authorize.guard.ts" />
     <TypeScriptCompile Include="src\core\guards\log-out.guard.ts" />

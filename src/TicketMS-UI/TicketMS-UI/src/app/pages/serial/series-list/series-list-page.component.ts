@@ -1,24 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { SerialService } from '../../../../services/api-services/serial.service';
 import { Serial } from '../../../../models/domain/serial';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SerialDetailsPageComponent } from '../serial-details/serial-details-page.component';
 import { Location } from '@angular/common';
+import { BasePage } from '../../base-page';
+import { AuthenticationService } from '../../../../services/authentication.service';
 
 @Component({
     selector: 'app-series-list-page',
     templateUrl: './series-list-page.component.html'
 })
-export class SeriesListPageComponent implements OnInit {
+export class SeriesListPageComponent extends BasePage implements OnInit {
     seriesList: Serial[] = [];
 
-    constructor(private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private location: Location,
-        private modalService: NgbModal,
+    constructor(router: Router,
+        activatedRoute: ActivatedRoute,
+        location: Location,
+        modalService: NgbModal,
+        authService: AuthenticationService,
         private serialService: SerialService) {
+
+        super(router, activatedRoute, location, modalService, authService);
     }
 
     ngOnInit(): void {
@@ -30,7 +35,7 @@ export class SeriesListPageComponent implements OnInit {
             .subscribe(series => {
                 this.seriesList = series;
 
-                let id = this.activatedRoute.snapshot.params['id'];
+                let id = this.currentId;
 
                 if (id) {
                     this.resolveSerial(id);
@@ -47,16 +52,15 @@ export class SeriesListPageComponent implements OnInit {
     }
 
     openSerial(serial: Serial): void {
-        if (!this.activatedRoute.snapshot.params['id']) {
-            let url = this.router.createUrlTree([serial.Id], { relativeTo: this.activatedRoute }).toString();
-            this.location.go(url);
-        }
+        this.setUrlId('serial', serial.Id);
+        let modal = this.openModal(SerialDetailsPageComponent);
+        modal.result.then(r => {
+            let url = this.router.createUrlTree(['serial'], {
+                queryParamsHandling: 'merge'
+            }).toString();
 
-        let modal = this.modalService.open(SerialDetailsPageComponent, {
-            keyboard: false,
-            backdrop: 'static'
-        });
+            this.location.go(url);
+        }, () => {});
         modal.componentInstance.serial = serial;
-        modal.result.then(r => this.location.go('serial'));
     }
 }
