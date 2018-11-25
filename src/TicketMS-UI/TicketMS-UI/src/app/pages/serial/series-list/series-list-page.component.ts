@@ -9,16 +9,8 @@ import { Subject } from 'rxjs';
 })
 export class SeriesListPageComponent implements OnInit {
     seriesList: Serial[] = [];
-    dtTrigger: Subject<any> = new Subject<any>();
-    dtOptions: DataTables.Settings;
 
     constructor(private serialService: SerialService) {
-        this.dtOptions = {
-            paging: false,
-            searching: false,
-            infoCallback: this.dtInfoCallback,
-            dom: '<"top"i>t'
-        };
     }
 
     ngOnInit(): void {
@@ -29,11 +21,6 @@ export class SeriesListPageComponent implements OnInit {
         this.serialService.getAll()
             .subscribe(series => {
                 this.seriesList = series;
-                this.dtTrigger.next();
             });
-    }
-
-    dtInfoCallback(settings: any, start: number, end: number, max: number, total: number, pre: string): string {
-        return `Всього серій: ${total}`;
     }
 }

@@ -7,7 +7,7 @@ import { SignInPageComponent } from './pages/sign-in/sign-in-page.component';
 import { AuthPanelComponent } from './components/auth-panel/auth-panel.component';
 import { FormsModule } from '@angular/forms';
 
-import { DataTablesModule } from 'angular-datatables';
+//import { DataTablesModule } from 'angular-datatables';
 
 import { ServicesModule } from '../services/services.module';
 import { UtilServicesModule } from '../util-services/util-services.module';
@@ -39,7 +39,7 @@ import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-p
         FormsModule,
         HttpClientModule,
 
-        DataTablesModule
+        //DataTablesModule
     ],
     providers: [],
     bootstrap: [AppComponent]
