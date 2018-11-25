@@ -19,7 +19,11 @@
                 <tbody>
                     <tr *ngFor="let s of seriesList">
                         <td>{{ s.Id }}</td>
-                        <td><a [routerLink]="['/serial/details', s.Id]">{{ s.Name }}</a></td>
+                        <td>
+                            <button type="button" class="btn btn-link" (click)="openSerial(s)">
+                                {{ s.Name }}
+                            </button>
+                        </td>
                         <td>{{ s.PackagesCount }}</td>
                         <td>{{ s.TicketsCount }}</td>
                         <td>{{ s.Note }}</td>

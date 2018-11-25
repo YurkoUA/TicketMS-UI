@@ -31,7 +31,8 @@
         "angular-datatables": "7.0.0",
         "datatables.net-responsive": "2.2.3",
         "datatables.net-responsive-dt": "2.2.3",
-        "datatables.net-responsive-bs4": "2.2.3"
+        "datatables.net-responsive-bs4": "2.2.3",
+        "@ng-bootstrap/ng-bootstrap": "4.0.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.10.0",

@@ -8,6 +8,7 @@ import { AuthPanelComponent } from './components/auth-panel/auth-panel.component
 import { FormsModule } from '@angular/forms';
 
 //import { DataTablesModule } from 'angular-datatables';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ServicesModule } from '../services/services.module';
 import { UtilServicesModule } from '../util-services/util-services.module';
@@ -16,6 +17,7 @@ import { CoreModule } from '../core/core.module';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SeriesListPageComponent } from './pages/serial/series-list/series-list-page.component';
 import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
+import { SerialDetailsPageComponent } from './pages/serial/serial-details/serial-details-page.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +26,7 @@ import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-p
         SignInPageComponent,
 
         SeriesListPageComponent,
+        SerialDetailsPageComponent,
 
         ColorsListPageComponent,
 
@@ -39,9 +42,13 @@ import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-p
         FormsModule,
         HttpClientModule,
 
+        NgbModalModule
         //DataTablesModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        SerialDetailsPageComponent
+    ]
 })
 export class AppModule { }
