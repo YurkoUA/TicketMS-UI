@@ -14,6 +14,7 @@
     <None Remove="src\core\guards\anonymous.guard.ts" />
     <None Remove="src\core\guards\authorize.guard.ts" />
     <None Remove="src\core\guards\log-out.guard.ts" />
+    <None Remove="src\core\modal-click.directive.ts" />
     <None Remove="src\models\access-token.model.ts" />
     <None Remove="src\models\domain\color.ts" />
     <None Remove="src\models\domain\role.ts" />
@@ -40,6 +41,7 @@
     <TypeScriptCompile Include="src\core\guards\anonymous.guard.ts" />
     <TypeScriptCompile Include="src\core\guards\authorize.guard.ts" />
     <TypeScriptCompile Include="src\core\guards\log-out.guard.ts" />
+    <TypeScriptCompile Include="src\core\directives\modal-click.directive.ts" />
     <TypeScriptCompile Include="src\models\access-token.model.ts" />
     <TypeScriptCompile Include="src\models\domain\color.ts" />
     <TypeScriptCompile Include="src\models\domain\role.ts" />

@@ -8,10 +8,10 @@ import { BaseModal } from '../../base-modal';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-serial-details-page',
-    templateUrl: './serial-details-page.component.html'
+    selector: 'app-serial-details-modal',
+    templateUrl: './serial-details-modal.component.html'
 })
-export class SerialDetailsPageComponent extends BaseModal {
+export class SerialDetailsModalComponent extends BaseModal {
     @Input()  serial: Serial = new Serial();
 
     constructor(activeModal: NgbActiveModal, location: Location, private router: Router, private activeRoute: ActivatedRoute) {

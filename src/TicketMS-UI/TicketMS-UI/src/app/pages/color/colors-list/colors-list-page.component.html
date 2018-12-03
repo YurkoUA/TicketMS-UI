@@ -18,7 +18,11 @@
                 <tbody>
                     <tr *ngFor="let c of colorsList">
                         <td>{{ c.Id }}</td>
-                        <td><a [routerLink]="['/color/details', c.Id]">{{ c.Name }}</a></td>
+                        <td>
+                            <a href="/color/{{c.Id}}" (modalClick)="openColor(c)">
+                                {{ c.Name }}
+                            </a>
+                        </td>
                         <td>{{ c.PackagesCount }}</td>
                         <td>{{ c.TicketsCount }}</td>
                     </tr>

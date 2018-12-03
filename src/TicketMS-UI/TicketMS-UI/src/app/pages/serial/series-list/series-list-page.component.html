@@ -20,9 +20,7 @@
                     <tr *ngFor="let s of seriesList">
                         <td>{{ s.Id }}</td>
                         <td>
-                            <button type="button" class="btn btn-link" (click)="openSerial(s)">
-                                {{ s.Name }}
-                            </button>
+                            <a href="/serial/{{s.Id}}" (modalClick)="openSerial(s)">{{ s.Name }}</a>
                         </td>
                         <td>{{ s.PackagesCount }}</td>
                         <td>{{ s.TicketsCount }}</td>

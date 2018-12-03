@@ -17,7 +17,8 @@ import { CoreModule } from '../core/core.module';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SeriesListPageComponent } from './pages/serial/series-list/series-list-page.component';
 import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
-import { SerialDetailsPageComponent } from './pages/serial/serial-details/serial-details-page.component';
+import { ColorDetailsModalComponent } from './pages/color/color-details/color-details-modal.component';
+import { SerialDetailsModalComponent } from './pages/serial/serial-details/serial-details-modal.component';
 
 @NgModule({
     declarations: [
@@ -26,9 +27,10 @@ import { SerialDetailsPageComponent } from './pages/serial/serial-details/serial
         SignInPageComponent,
 
         SeriesListPageComponent,
-        SerialDetailsPageComponent,
+        SerialDetailsModalComponent,
 
         ColorsListPageComponent,
+        ColorDetailsModalComponent,
 
         AuthPanelComponent
     ],
@@ -48,7 +50,8 @@ import { SerialDetailsPageComponent } from './pages/serial/serial-details/serial
     providers: [],
     bootstrap: [AppComponent],
     entryComponents: [
-        SerialDetailsPageComponent
+        SerialDetailsModalComponent,
+        ColorDetailsModalComponent
     ]
 })
 export class AppModule { }

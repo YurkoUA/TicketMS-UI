@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title">Колір "{{color.Name}}"</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <dl class="row">
+        <dt class="col-lg-3 col-md-3 col-sm-12 col-xs-12">ID</dt>
+        <dd class="col-lg-9 col-md-9 col-sm-12 col-xs-12">{{color.Id}}</dd>
+
+        <dt class="col-lg-3 col-md-3 col-sm-12 col-xs-12">Назва</dt>
+        <dd class="col-lg-9 col-md-9 col-sm-12 col-xs-12">{{color.Name}}</dd>
+
+        <dt class="col-lg-3 col-md-3 col-sm-12 col-xs-12" *ngIf="color.PackagesCount">Пачок</dt>
+        <dd class="col-lg-9 col-md-9 col-sm-12 col-xs-12" *ngIf="color.PackagesCount">{{color.PackagesCount}}</dd>
+
+        <dt class="col-lg-3 col-md-3 col-sm-12 col-xs-12" *ngIf="color.TicketsCount">Квитків</dt>
+        <dd class="col-lg-9 col-md-9 col-sm-12 col-xs-12" *ngIf="color.TicketsCount">{{color.TicketsCount}}</dd>
+    </dl>
+</div>

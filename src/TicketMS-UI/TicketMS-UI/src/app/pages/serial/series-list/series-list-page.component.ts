@@ -4,10 +4,10 @@ import { Serial } from '../../../../models/domain/serial';
 import { Subject, Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SerialDetailsPageComponent } from '../serial-details/serial-details-page.component';
 import { Location } from '@angular/common';
 import { BasePage } from '../../base-page';
 import { AuthenticationService } from '../../../../services/authentication.service';
+import { SerialDetailsModalComponent } from '../serial-details/serial-details-modal.component';
 
 @Component({
     selector: 'app-series-list-page',
@@ -53,14 +53,6 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
 
     openSerial(serial: Serial): void {
         this.setUrlId('serial', serial.Id);
-        let modal = this.openModal(SerialDetailsPageComponent);
-        modal.result.then(r => {
-            let url = this.router.createUrlTree(['serial'], {
-                queryParamsHandling: 'merge'
-            }).toString();
-
-            this.location.go(url);
-        }, () => {});
-        modal.componentInstance.serial = serial;
+        this.openModalChangingUrlAndModel(SerialDetailsModalComponent, ['serial'], 'serial', serial);
     }
 }

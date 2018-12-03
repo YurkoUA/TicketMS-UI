@@ -29,13 +29,11 @@ export abstract class BasePage {
     }
 
     setUrlId(segment: string, id: number): void {
-        if (this.currentId == undefined || isNaN(this.currentId)) {
-            let url = this.router.createUrlTree([segment, id], {
-                queryParamsHandling: 'merge'
-            }).toString();
+        let url = this.router.createUrlTree([segment, id], {
+            queryParamsHandling: 'merge'
+        }).toString();
 
-            this.location.go(url);
-        }
+        this.location.go(url);
     }
 
     openModal(component: any): NgbModalRef {
@@ -43,5 +41,23 @@ export abstract class BasePage {
             keyboard: false,
             backdrop: 'static'
         });
+    }
+
+    openModalChangingUrlAndModel(component: any, url: string[], modalProperty: string, model: any): NgbModalRef {
+        let modal = this.modalService.open(component, {
+            keyboard: false,
+            backdrop: 'static'
+        });
+
+        modal.result.then(r => {
+            let urlToGo = this.router.createUrlTree(url, {
+                queryParamsHandling: 'merge'
+            }).toString();
+            
+            this.location.go(urlToGo);
+        }, r => { });
+
+        modal.componentInstance[modalProperty] = model;
+        return modal;
     }
 }
