@@ -2,6 +2,6 @@ export class Color {
     Id: number;
     Name: string;
     PaletteName: string;
-    PackagesCount: number;
-    TicketsCount: number;
+    PackagesCount: number = 0;
+    TicketsCount: number = 0;
 }

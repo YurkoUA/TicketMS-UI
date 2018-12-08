@@ -53,6 +53,8 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
 
     openSerial(serial: Serial): void {
         this.setUrlId('serial', serial.Id);
-        this.openModalChangingUrlAndModel(SerialDetailsModalComponent, ['serial'], 'serial', serial);
+        this.openModalChangingUrlAndModel(SerialDetailsModalComponent, ['serial'], 'serial', serial, (serial: Serial) => {
+            this.seriesList.filter(s => s.Id == serial.Id)[0] = serial;
+        });
     }
 }

@@ -5,6 +5,7 @@ import { SignInResponse } from '../models/signin-response.model';
 import { HeadersManagerService } from '../util-services/headers-manager.service';
 import { AccountService } from './api-services/account.service';
 import { AccessToken } from '../models/access-token.model';
+import { RoleEnum } from '../models/enums/role.enum';
 
 const AUTHORIZATION = 'Authorization';
 
@@ -23,6 +24,10 @@ export class AuthenticationService {
 
     getUser(): User {
         return this.currentUser;
+    }
+
+    get isAdmin(): boolean {
+        return this.currentUser.Role.Id == RoleEnum.Admin;
     }
 
     initializeAuthentication(): void {

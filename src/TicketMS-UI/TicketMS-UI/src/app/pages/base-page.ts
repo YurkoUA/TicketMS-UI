@@ -2,28 +2,19 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { AuthenticationService } from "../../services/authentication.service";
+import { BaseComponent } from "../base-component";
 
-export abstract class BasePage {
+export abstract class BasePage extends BaseComponent {
     constructor(
         protected router: Router,
         protected activeRoute: ActivatedRoute,
         protected location: Location,
         protected modalService: NgbModal,
-        protected authenticationService: AuthenticationService
+        authenticationService: AuthenticationService
     ) {
+        super(authenticationService);
     }
-
-    get isAuthenticated(): boolean {
-        return this.authenticationService.isAuthenticated();
-    }
-
-    get userName(): string {
-        if (this.isAuthenticated) {
-            return this.authenticationService.getUser().UserName;
-        }
-        return null;
-    }
-
+    
     get currentId(): number {
         return parseInt(this.activeRoute.snapshot.params['id']);
     }
@@ -43,7 +34,7 @@ export abstract class BasePage {
         });
     }
 
-    openModalChangingUrlAndModel(component: any, url: string[], modalProperty: string, model: any): NgbModalRef {
+    openModalChangingUrlAndModel(component: any, url: string[], modalProperty: string, model: any, onClose?: Function): NgbModalRef {
         let modal = this.modalService.open(component, {
             keyboard: false,
             backdrop: 'static'
@@ -55,6 +46,10 @@ export abstract class BasePage {
             }).toString();
             
             this.location.go(urlToGo);
+
+            if (onClose) {
+                onClose(r != null ? r : null);
+            }
         }, r => { });
 
         modal.componentInstance[modalProperty] = model;

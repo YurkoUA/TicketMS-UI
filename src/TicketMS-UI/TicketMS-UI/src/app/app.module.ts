@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInPageComponent } from './pages/sign-in/sign-in-page.component';
 import { AuthPanelComponent } from './components/auth-panel/auth-panel.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //import { DataTablesModule } from 'angular-datatables';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +20,7 @@ import { SeriesListPageComponent } from './pages/serial/series-list/series-list-
 import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
 import { ColorDetailsModalComponent } from './pages/color/color-details/color-details-modal.component';
 import { SerialDetailsModalComponent } from './pages/serial/serial-details/serial-details-modal.component';
+import { SerialEditComponent } from './components/serial-edit/serial-edit.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +34,9 @@ import { SerialDetailsModalComponent } from './pages/serial/serial-details/seria
         ColorsListPageComponent,
         ColorDetailsModalComponent,
 
-        AuthPanelComponent
+        AuthPanelComponent,
+
+        SerialEditComponent
     ],
     imports: [
         CoreModule,
@@ -43,8 +47,9 @@ import { SerialDetailsModalComponent } from './pages/serial/serial-details/seria
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
+        BrowserAnimationsModule,
 
-        NgbModalModule
+        NgbModalModule,
         //DataTablesModule
     ],
     providers: [],
@@ -52,6 +57,9 @@ import { SerialDetailsModalComponent } from './pages/serial/serial-details/seria
     entryComponents: [
         SerialDetailsModalComponent,
         ColorDetailsModalComponent
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
     ]
 })
 export class AppModule { }

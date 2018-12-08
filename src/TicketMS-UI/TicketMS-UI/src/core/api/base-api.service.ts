@@ -23,6 +23,8 @@ export class BaseApiService {
             message = errors.join('\n');
         }
 
+        alert(message);
+
         return new Observable();
     }
 }

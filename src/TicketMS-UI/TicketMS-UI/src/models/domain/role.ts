@@ -1,5 +1,7 @@
+import { RoleEnum } from "../enums/role.enum";
+
 export class Role {
-    Id: number;
+    Id: RoleEnum;
     Name: string;
     Description: string;
 }
