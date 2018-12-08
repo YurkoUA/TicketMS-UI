@@ -1,8 +1,14 @@
 <h2>Серії</h2>
+<button class="btn btn-link" (click)="openCreateModal()">
+    Додати серію
+</button>
+
 <hr />
 
-<div class="card">
-    <div class="card-header">Список серій: {{ seriesList.length }} шт.</div>
+<div class="card" *ngIf="!isEmptyList">
+    <div class="card-header">
+        Список серій: {{ seriesList.length }} шт.
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-sm table-hover table-bordered">
@@ -30,5 +36,18 @@
             </table>
         </div>
     </div>
+</div>
+
+<div class="alert alert-info" role="alert" *ngIf="isEmptyList && isLoading">
+    Завантаження...
+</div>
+
+<div class="alert alert-danger" role="alert" *ngIf="isEmptyList && !isLoading">
+    Немає жодної серії.
+    <hr />
+
+    <button type="button" class="btn btn-primary" (click)="openCreateModal()">
+        Додати
+    </button>
 </div>
 

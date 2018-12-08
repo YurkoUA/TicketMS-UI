@@ -27,11 +27,19 @@ export abstract class BasePage extends BaseComponent {
         this.location.go(url);
     }
 
-    openModal(component: any): NgbModalRef {
-        return this.modalService.open(component, {
+    openModal(component: any, onClose?: Function): NgbModalRef {
+        let modal = this.modalService.open(component, {
             keyboard: false,
             backdrop: 'static'
         });
+
+        modal.result.then(r => {
+            if (onClose) {
+                onClose(r != null ? r : null);
+            }
+        }, r => { });
+
+        return modal;
     }
 
     openModalChangingUrlAndModel(component: any, url: string[], modalProperty: string, model: any, onClose?: Function): NgbModalRef {

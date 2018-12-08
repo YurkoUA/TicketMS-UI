@@ -21,6 +21,7 @@ import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-p
 import { ColorDetailsModalComponent } from './pages/color/color-details/color-details-modal.component';
 import { SerialDetailsModalComponent } from './pages/serial/serial-details/serial-details-modal.component';
 import { SerialEditComponent } from './components/serial-edit/serial-edit.component';
+import { SerialCreateModalComponent } from './pages/serial/serial-create/serial-create-modal.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { SerialEditComponent } from './components/serial-edit/serial-edit.compon
 
         SeriesListPageComponent,
         SerialDetailsModalComponent,
+        SerialCreateModalComponent,
 
         ColorsListPageComponent,
         ColorDetailsModalComponent,
@@ -56,6 +58,8 @@ import { SerialEditComponent } from './components/serial-edit/serial-edit.compon
     bootstrap: [AppComponent],
     entryComponents: [
         SerialDetailsModalComponent,
+        SerialCreateModalComponent,
+
         ColorDetailsModalComponent
     ],
     schemas: [

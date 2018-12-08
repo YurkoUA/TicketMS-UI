@@ -9,7 +9,7 @@ export abstract class SubmitComponentBase<TModel extends Identifier, TSource> im
     @Output() onCancelled: EventEmitter<any> = new EventEmitter<any>();
 
     get isNew(): boolean {
-        return this.model.Id == 0;
+        return !this.model.Id || this.model.Id == 0;
     }
 
     cancel(): void {

@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { BasePage } from '../../base-page';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { SerialDetailsModalComponent } from '../serial-details/serial-details-modal.component';
+import { SerialCreateModalComponent } from '../serial-create/serial-create-modal.component';
 
 @Component({
     selector: 'app-series-list-page',
@@ -15,6 +16,12 @@ import { SerialDetailsModalComponent } from '../serial-details/serial-details-mo
 })
 export class SeriesListPageComponent extends BasePage implements OnInit {
     seriesList: Serial[] = [];
+
+    isLoading: boolean = true;
+
+    get isEmptyList(): boolean {
+        return this.seriesList.length == 0;
+    }
 
     constructor(router: Router,
         activatedRoute: ActivatedRoute,
@@ -34,6 +41,7 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
         this.serialService.getAll()
             .subscribe(series => {
                 this.seriesList = series;
+                this.isLoading = false;
 
                 let id = this.currentId;
 
@@ -55,6 +63,14 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
         this.setUrlId('serial', serial.Id);
         this.openModalChangingUrlAndModel(SerialDetailsModalComponent, ['serial'], 'serial', serial, (serial: Serial) => {
             this.seriesList.filter(s => s.Id == serial.Id)[0] = serial;
+        });
+    }
+
+    openCreateModal(): void {
+        this.openModal(SerialCreateModalComponent, (serial: Serial) => {
+            if (serial.Id) {
+                this.seriesList.push(serial);
+            }
         });
     }
 }
