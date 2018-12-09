@@ -9,10 +9,10 @@ export abstract class BasePage extends BaseComponent {
         protected router: Router,
         protected activeRoute: ActivatedRoute,
         protected location: Location,
-        protected modalService: NgbModal,
+        modalService: NgbModal,
         authenticationService: AuthenticationService
     ) {
-        super(authenticationService);
+        super(authenticationService, modalService);
     }
     
     get currentId(): number {

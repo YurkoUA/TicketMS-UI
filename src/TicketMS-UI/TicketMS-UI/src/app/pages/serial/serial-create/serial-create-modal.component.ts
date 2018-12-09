@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BaseModal } from '../../base-modal';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { Serial } from '../../../../models/domain/serial';
@@ -11,9 +11,10 @@ import { Serial } from '../../../../models/domain/serial';
 })
 export class SerialCreateModalComponent extends BaseModal {
     constructor(activeModal: NgbActiveModal,
+        modalService: NgbModal,
         location: Location,
         authService: AuthenticationService) {
-            super(activeModal, location, authService);
+        super(activeModal, location, authService, modalService);
     }
 
     onSerialCreated(serial: Serial): void {

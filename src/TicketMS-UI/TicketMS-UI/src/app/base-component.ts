@@ -1,8 +1,11 @@
 import { AuthenticationService } from "../services/authentication.service";
 import { IConfirmOptions } from "../models/interfaces/confirm-options.interface";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ConfirmModalComponent } from "./components/confirm-modal/confirm-modal.component";
 
 export abstract class BaseComponent {
-    constructor(protected authenticationService: AuthenticationService) {
+    constructor(protected authenticationService: AuthenticationService,
+        protected modalService: NgbModal) {
     }
 
     get isAuthenticated(): boolean {
@@ -24,12 +27,12 @@ export abstract class BaseComponent {
     }
 
     confirm(options: IConfirmOptions): void {
-        var isSuccess = confirm(options.message);
+        let modal = this.modalService.open(ConfirmModalComponent, {
+            keyboard: false,
+            backdrop: 'static',
+            size: 'sm'
+        });
 
-        if (isSuccess) {
-            options.onConfirm();
-        } else if (options.onCancel) {
-            options.onCancel();
-        }
+        modal.componentInstance.options = options;
     }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BaseModal } from '../../base-modal';
@@ -14,11 +14,13 @@ export class ColorDetailsModalComponent extends BaseModal {
     @Input() color: Color = new Color();
 
     constructor(activeModal: NgbActiveModal,
+        modalService: NgbModal,
         location: Location,
         authService: AuthenticationService,
         private router: Router,
         private activeRoute: ActivatedRoute) {
-        super(activeModal, location, authService);
+
+        super(activeModal, location, authService, modalService);
     }
 
     closeModal(): void {

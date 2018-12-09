@@ -23,6 +23,7 @@ import { ColorDetailsModalComponent } from './pages/color/color-details/color-de
 import { SerialDetailsModalComponent } from './pages/serial/serial-details/serial-details-modal.component';
 import { SerialEditComponent } from './components/serial-edit/serial-edit.component';
 import { SerialCreateModalComponent } from './pages/serial/serial-create/serial-create-modal.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { SerialCreateModalComponent } from './pages/serial/serial-create/serial-
         ColorDetailsModalComponent,
 
         AuthPanelComponent,
+        ConfirmModalComponent,
 
         SerialEditComponent
     ],
@@ -62,7 +64,9 @@ import { SerialCreateModalComponent } from './pages/serial/serial-create/serial-
         SerialDetailsModalComponent,
         SerialCreateModalComponent,
 
-        ColorDetailsModalComponent
+        ColorDetailsModalComponent,
+
+        ConfirmModalComponent
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

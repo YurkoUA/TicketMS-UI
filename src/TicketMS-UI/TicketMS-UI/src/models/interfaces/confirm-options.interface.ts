@@ -3,4 +3,6 @@ export interface IConfirmOptions {
     title?: string;
     onConfirm: Function;
     onCancel?: Function;
+    yes: string;
+    no: string;
 }

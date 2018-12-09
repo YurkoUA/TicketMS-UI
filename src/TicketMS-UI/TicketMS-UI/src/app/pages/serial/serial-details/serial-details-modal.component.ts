@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SerialService } from '../../../../services/api-services/serial.service';
 import { Serial } from '../../../../models/domain/serial';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 import { BaseModal } from '../../base-modal';
 import { Observable } from 'rxjs';
@@ -25,12 +25,13 @@ export class SerialDetailsModalComponent extends BaseModal {
         activeModal: NgbActiveModal,
         location: Location,
         authService: AuthenticationService,
+        modalService: NgbModal,
         private router: Router,
         private activeRoute: ActivatedRoute,
         private serialService: SerialService,
         private toastr: ToastrService) {
 
-        super(activeModal, location, authService);
+        super(activeModal, location, authService, modalService);
     }
 
     get canBeDeleted(): boolean {
@@ -58,12 +59,15 @@ export class SerialDetailsModalComponent extends BaseModal {
     deleteSerial(): void {
         let confirm: IConfirmOptions = {
             message: `Ви дійсно хочете видалити серію "${this.serial.Name}"?`,
+            title: `Видалення серії "${this.serial.Name}"`,
+            yes: 'Видалити',
+            no: 'Скасувати',
             onConfirm: () => {
                 this.serialService.deleteSerial(this.serial.Id)
                     .subscribe(isOk => {
                         this.parentComponent.seriesList.remove(this.serial);
 
-                        this.toastr.success('Серію успішно видалено!');
+                        this.toastr.success(`Серію "${this.serial.Name}" успішно видалено!`);
                         this.closeModal();
                     });
             }
