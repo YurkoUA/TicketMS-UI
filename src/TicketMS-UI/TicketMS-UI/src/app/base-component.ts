@@ -1,4 +1,5 @@
 import { AuthenticationService } from "../services/authentication.service";
+import { IConfirmOptions } from "../models/interfaces/confirm-options.interface";
 
 export abstract class BaseComponent {
     constructor(protected authenticationService: AuthenticationService) {
@@ -20,5 +21,15 @@ export abstract class BaseComponent {
             return false;
 
         return this.authenticationService.isAdmin;
+    }
+
+    confirm(options: IConfirmOptions): void {
+        var isSuccess = confirm(options.message);
+
+        if (isSuccess) {
+            options.onConfirm();
+        } else if (options.onCancel) {
+            options.onCancel();
+        }
     }
 }

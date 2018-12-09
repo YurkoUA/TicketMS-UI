@@ -78,3 +78,15 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+
+declare global {
+    interface Array<T> {
+        remove(value: T): void;
+    }
+}
+
+Array.prototype.remove = function<T>(this: T[], value: T) {
+    let index = this.indexOf(value);
+    this.splice(index, 1);
+}

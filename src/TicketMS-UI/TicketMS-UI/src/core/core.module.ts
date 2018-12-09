@@ -5,6 +5,7 @@ import { ServicesModule } from '../services/services.module';
 import { LogoutGuard } from './guards/log-out.guard';
 import { ModalClickDirective } from './directives/modal-click.directive';
 import { SerialNameValidator } from './validators/serial-name.validator.directive';
+import { PreventDefaultClickDirective } from './directives/prevent-default-click.directive';
 
 @NgModule({
     providers: [
@@ -17,11 +18,13 @@ import { SerialNameValidator } from './validators/serial-name.validator.directiv
     ],
     declarations: [
         ModalClickDirective,
-        SerialNameValidator
+        SerialNameValidator,
+        PreventDefaultClickDirective
     ],
     exports: [
         ModalClickDirective,
-        SerialNameValidator
+        SerialNameValidator,
+        PreventDefaultClickDirective
     ]
 })
 export class CoreModule {

@@ -3,10 +3,15 @@ import { BaseApiService } from './base-api.service';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { HeadersManagerService } from '../../util-services/headers-manager.service';
+import { ToastrService } from 'ngx-toastr';
 
 export class BaseRestApiService extends BaseApiService {
-    constructor(protected entityUrl: string, http: HttpClient, private headersService: HeadersManagerService) {
-        super(http);
+    constructor(protected entityUrl: string,
+        http: HttpClient,
+        toastr: ToastrService,
+        private headersService: HeadersManagerService) {
+
+        super(http, toastr);
     }
 
     get<T>(url: string, params?: any): Observable<T> {

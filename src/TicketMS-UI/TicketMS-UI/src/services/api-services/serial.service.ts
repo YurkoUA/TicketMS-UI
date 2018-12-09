@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
 import { Serial } from '../../models/domain/serial';
 import { SerialCreateModel } from '../../models/serial-create.model';
 import { Identifier } from '../../models/identifier.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class SerialService extends BaseRestApiService {
-    constructor(http: HttpClient, headersService: HeadersManagerService) {
-        super('/api/Serial/', http, headersService);
+    constructor(http: HttpClient, headersService: HeadersManagerService, toastr: ToastrService) {
+        super('/api/Serial/', http, toastr, headersService);
     }
 
     getAll(): Observable<Serial[]> {

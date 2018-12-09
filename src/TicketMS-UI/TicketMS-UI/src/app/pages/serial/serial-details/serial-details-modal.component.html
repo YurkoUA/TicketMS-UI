@@ -32,4 +32,6 @@
 
 <div class="modal-footer" *ngIf="!isEditMode && isAdmin">
     <button type="button" class="btn btn-primary" (click)="enableEditing()">Редагувати</button>
+    <button type="button" class="btn btn-danger"
+            (click)="deleteSerial()" *ngIf="canBeDeleted">Видалити</button>
 </div>

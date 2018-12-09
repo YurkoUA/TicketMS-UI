@@ -1,9 +1,10 @@
 import { HttpResponse, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { baseUrl } from './../../app/app.config';
+import { ToastrService } from 'ngx-toastr';
 
 export class BaseApiService {
-    constructor(protected http: HttpClient) {
+    constructor(protected http: HttpClient, protected toastr: ToastrService) {
 
     }
 
@@ -23,7 +24,9 @@ export class BaseApiService {
             message = errors.join('\n');
         }
 
-        alert(message);
+        if (message.length > 0) {
+            this.toastr.error(message);
+        }
 
         return new Observable();
     }

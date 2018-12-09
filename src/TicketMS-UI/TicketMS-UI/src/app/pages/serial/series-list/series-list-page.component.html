@@ -1,7 +1,7 @@
 <h2>Серії</h2>
-<button class="btn btn-link" (click)="openCreateModal()">
+<a href="#" preventDefaultClick (click)="openCreateModal()" *ngIf="isAdmin">
     Додати серію
-</button>
+</a>
 
 <hr />
 

@@ -7,6 +7,9 @@ import { Location } from '@angular/common';
 import { BaseModal } from '../../base-modal';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../../../../services/authentication.service';
+import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
+import { SeriesListPageComponent } from '../series-list/series-list-page.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-serial-details-modal',
@@ -14,6 +17,7 @@ import { AuthenticationService } from '../../../../services/authentication.servi
 })
 export class SerialDetailsModalComponent extends BaseModal {
     @Input() serial: Serial = new Serial();
+    @Input() parentComponent: SeriesListPageComponent;
 
     isEditMode: boolean = false;
 
@@ -22,8 +26,16 @@ export class SerialDetailsModalComponent extends BaseModal {
         location: Location,
         authService: AuthenticationService,
         private router: Router,
-        private activeRoute: ActivatedRoute) {
+        private activeRoute: ActivatedRoute,
+        private serialService: SerialService,
+        private toastr: ToastrService) {
+
         super(activeModal, location, authService);
+    }
+
+    get canBeDeleted(): boolean {
+        return this.serial.PackagesCount == 0
+            && this.serial.TicketsCount == 0;
     }
 
     closeModal(): void {
@@ -41,5 +53,21 @@ export class SerialDetailsModalComponent extends BaseModal {
 
     onCancelled(): void {
         this.isEditMode = false;
+    }
+
+    deleteSerial(): void {
+        let confirm: IConfirmOptions = {
+            message: `Ви дійсно хочете видалити серію "${this.serial.Name}"?`,
+            onConfirm: () => {
+                this.serialService.deleteSerial(this.serial.Id)
+                    .subscribe(isOk => {
+                        this.parentComponent.seriesList.remove(this.serial);
+
+                        this.toastr.success('Серію успішно видалено!');
+                        this.closeModal();
+                    });
+            }
+        };
+        this.confirm(confirm);
     }
 }

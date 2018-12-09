@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //import { DataTablesModule } from 'angular-datatables';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 import { ServicesModule } from '../services/services.module';
 import { UtilServicesModule } from '../util-services/util-services.module';
@@ -52,6 +53,7 @@ import { SerialCreateModalComponent } from './pages/serial/serial-create/serial-
         BrowserAnimationsModule,
 
         NgbModalModule,
+        ToastrModule.forRoot()
         //DataTablesModule
     ],
     providers: [],

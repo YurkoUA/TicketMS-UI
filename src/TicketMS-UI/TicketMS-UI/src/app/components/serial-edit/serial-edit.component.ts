@@ -5,6 +5,7 @@ import { SubmitComponentBase } from '../submit-component-base';
 import { SerialCreateModel } from '../../../models/serial-create.model';
 import { Identifier } from '../../../models/identifier.model';
 import { Serial } from '../../../models/domain/serial';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-serial-edit',
@@ -13,7 +14,9 @@ import { Serial } from '../../../models/domain/serial';
 export class SerialEditComponent extends SubmitComponentBase<SerialCreateModel, Serial> {
     @ViewChild('serialForm') serialForm: NgForm;
 
-    constructor(private serialService: SerialService) {
+    constructor(private serialService: SerialService,
+        private toastr: ToastrService) {
+
         super();
     }
 
@@ -42,6 +45,7 @@ export class SerialEditComponent extends SubmitComponentBase<SerialCreateModel, 
                 serial.Name = this.model.Name;
                 serial.Note = this.model.Note;
 
+                this.toastr.success(`Серію "${this.model.Name}" успішно створено!`);
                 this.onSubmitted.emit(serial);
             });
     }
@@ -52,6 +56,7 @@ export class SerialEditComponent extends SubmitComponentBase<SerialCreateModel, 
                 this.source.Name = this.model.Name;
                 this.source.Note = this.model.Note;
 
+                this.toastr.success(`Серію "${this.model.Name}" успішно збережено!`);
                 this.onSubmitted.emit(this.source);
             });
     }

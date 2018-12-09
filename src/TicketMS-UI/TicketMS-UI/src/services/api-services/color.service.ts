@@ -4,11 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { HeadersManagerService } from '../../util-services/headers-manager.service';
 import { Color } from '../../models/domain/color';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ColorService extends BaseRestApiService {
-    constructor(http: HttpClient, headersService: HeadersManagerService) {
-        super('/api/Color/', http, headersService);
+    constructor(http: HttpClient, headersService: HeadersManagerService, toastr: ToastrService) {
+        super('/api/Color/', http, toastr, headersService);
     }
 
     getAll(): Observable<Color[]> {

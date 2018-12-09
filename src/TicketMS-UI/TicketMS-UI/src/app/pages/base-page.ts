@@ -39,6 +39,7 @@ export abstract class BasePage extends BaseComponent {
             }
         }, r => { });
 
+        modal.componentInstance['parentComponent'] = this;
         return modal;
     }
 
@@ -61,6 +62,7 @@ export abstract class BasePage extends BaseComponent {
         }, r => { });
 
         modal.componentInstance[modalProperty] = model;
+        modal.componentInstance['parentComponent'] = this;
         return modal;
     }
 }
