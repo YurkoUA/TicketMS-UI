@@ -24,6 +24,7 @@ import { SerialDetailsModalComponent } from './pages/serial/serial-details/seria
 import { SerialEditComponent } from './components/serial-edit/serial-edit.component';
 import { SerialCreateModalComponent } from './pages/serial/serial-create/serial-create-modal.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { PackagesListModalComponent } from './pages/package/packages-list/packages-list-modal.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,8 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 
         ColorsListPageComponent,
         ColorDetailsModalComponent,
+
+        PackagesListModalComponent,
 
         AuthPanelComponent,
         ConfirmModalComponent,
@@ -65,6 +68,8 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
         SerialCreateModalComponent,
 
         ColorDetailsModalComponent,
+
+        PackagesListModalComponent,
 
         ConfirmModalComponent
     ],

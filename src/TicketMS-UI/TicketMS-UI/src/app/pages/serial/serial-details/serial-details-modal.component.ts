@@ -10,6 +10,8 @@ import { AuthenticationService } from '../../../../services/authentication.servi
 import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
 import { SeriesListPageComponent } from '../series-list/series-list-page.component';
 import { ToastrService } from 'ngx-toastr';
+import { PackagesListModalComponent } from '../../package/packages-list/packages-list-modal.component';
+import { PackageService } from '../../../../services/api-services/package.service';
 
 @Component({
     selector: 'app-serial-details-modal',
@@ -29,7 +31,8 @@ export class SerialDetailsModalComponent extends BaseModal {
         private router: Router,
         private activeRoute: ActivatedRoute,
         private serialService: SerialService,
-        private toastr: ToastrService) {
+        private toastr: ToastrService,
+        private packageService: PackageService) {
 
         super(activeModal, location, authService, modalService);
     }
@@ -73,5 +76,18 @@ export class SerialDetailsModalComponent extends BaseModal {
             }
         };
         this.confirm(confirm);
+    }
+
+    openPackagesModal(): void {
+        this.packageService.getBySerial(this.serial.Id)
+            .subscribe(packages => {
+                this.openModal(PackagesListModalComponent, {
+                    size: 'lg',
+                    onLoad: (component: PackagesListModalComponent) => {
+                        component.title = `Пачки за серією "${this.serial.Name}"`;
+                        component.packagesList = packages;
+                    }
+                });
+            });
     }
 }

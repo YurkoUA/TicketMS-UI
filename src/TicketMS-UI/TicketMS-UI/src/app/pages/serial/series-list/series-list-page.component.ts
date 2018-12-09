@@ -67,9 +67,11 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
     }
 
     openCreateModal(): void {
-        this.openModal(SerialCreateModalComponent, (serial: Serial) => {
-            if (serial.Id) {
-                this.seriesList.push(serial);
+        this.openModal(SerialCreateModalComponent, {
+            onClose: (serial: Serial) => {
+                if (serial.Id) {
+                    this.seriesList.push(serial);
+                }
             }
         });
     }
