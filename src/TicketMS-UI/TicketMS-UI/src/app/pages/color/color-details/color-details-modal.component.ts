@@ -6,6 +6,9 @@ import { Color } from '../../../../models/domain/color';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { ColorsListPageComponent } from '../colors-list/colors-list-page.component';
 import { BaseDetailsModal } from '../../base-details-modal';
+import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
+import { ColorService } from '../../../../services/api-services/color.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-color-details-modal',
@@ -18,8 +21,10 @@ export class ColorDetailsModalComponent extends BaseDetailsModal<Color> {
         modalService: NgbModal,
         location: Location,
         authService: AuthenticationService,
+        private colorService: ColorService,
         private router: Router,
-        private activeRoute: ActivatedRoute) {
+        private activeRoute: ActivatedRoute,
+        private toastr: ToastrService) {
 
         super(activeModal, location, authService, modalService);
     }
@@ -30,7 +35,22 @@ export class ColorDetailsModalComponent extends BaseDetailsModal<Color> {
     }
 
     deleteColor(): void {
+        let confirm: IConfirmOptions = {
+            message: `Ви дійсно хочете видалити колір "${this.model.Name}"?`,
+            title: `Видалення кольору "${this.model.Name}"`,
+            yes: 'Видалити',
+            no: 'Скасувати',
+            onConfirm: () => {
+                this.colorService.deleteColor(this.model.Id)
+                    .subscribe(isOk => {
+                        this.parentComponent.colorsList.remove(this.model);
 
+                        this.toastr.success(`Колір "${this.model.Name}" успішно видалено!`);
+                        this.closeModal();
+                    });
+            }
+        };
+        this.confirm(confirm);
     }
 
     openPackagesModal(): void {
