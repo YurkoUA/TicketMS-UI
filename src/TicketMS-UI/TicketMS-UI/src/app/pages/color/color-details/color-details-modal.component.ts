@@ -9,6 +9,8 @@ import { BaseDetailsModal } from '../../base-details-modal';
 import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
 import { ColorService } from '../../../../services/api-services/color.service';
 import { ToastrService } from 'ngx-toastr';
+import { PackageService } from '../../../../services/api-services/package.service';
+import { PackagesListModalComponent } from '../../package/packages-list/packages-list-modal.component';
 
 @Component({
     selector: 'app-color-details-modal',
@@ -24,6 +26,7 @@ export class ColorDetailsModalComponent extends BaseDetailsModal<Color> {
         private colorService: ColorService,
         private router: Router,
         private activeRoute: ActivatedRoute,
+        private packageService: PackageService,
         private toastr: ToastrService) {
 
         super(activeModal, location, authService, modalService);
@@ -54,6 +57,15 @@ export class ColorDetailsModalComponent extends BaseDetailsModal<Color> {
     }
 
     openPackagesModal(): void {
-
+        this.packageService.getByColor(this.model.Id)
+            .subscribe(packages => {
+                this.openModal(PackagesListModalComponent, {
+                    size: 'lg',
+                    onLoad: (component: PackagesListModalComponent) => {
+                        component.title = `Пачки за кольором "${this.model.Name}"`;
+                        component.packagesList = packages;
+                    }
+                });
+            });
     }
 }
