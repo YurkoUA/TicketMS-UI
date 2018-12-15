@@ -5,6 +5,8 @@ import { HeadersManagerService } from '../../util-services/headers-manager.servi
 import { Color } from '../../models/domain/color';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Identifier } from '../../models/identifier.model';
+import { ColorCreateModel } from '../../models/color-create.model';
 
 @Injectable()
 export class ColorService extends BaseRestApiService {
@@ -18,5 +20,17 @@ export class ColorService extends BaseRestApiService {
 
     getById(id: number): Observable<Color> {
         return this.get('Get', { id: id });
+    }
+
+    createColor(color: ColorCreateModel): Observable<Identifier> {
+        return this.post('', color);
+    }
+
+    editColor(color: ColorCreateModel): Observable<boolean> {
+        return this.put('', color, { id: color.Id });
+    }
+
+    deleteColor(id: number): Observable<boolean> {
+        return this.delete('', { id: id });
     }
 }

@@ -12,8 +12,6 @@ import { ToastrService } from 'ngx-toastr';
     templateUrl: './serial-edit.component.html'
 })
 export class SerialEditComponent extends SubmitComponentBase<SerialCreateModel, Serial> {
-    @ViewChild('serialForm') serialForm: NgForm;
-
     constructor(private serialService: SerialService,
         private toastr: ToastrService) {
 
@@ -26,18 +24,7 @@ export class SerialEditComponent extends SubmitComponentBase<SerialCreateModel, 
         this.model.Note = this.source.Note;
     }
 
-    submitForm(): void {
-        if (!this.serialForm.valid)
-            return;
-
-        if (this.isNew) {
-            this.createSerial();
-        } else {
-            this.editSerial();
-        }
-    }
-
-    createSerial(): void {
+    createModel(): void {
         this.serialService.createSerial(this.model)
             .subscribe(id => {
                 let serial = new Serial();
@@ -50,7 +37,7 @@ export class SerialEditComponent extends SubmitComponentBase<SerialCreateModel, 
             });
     }
 
-    editSerial(): void {
+    editModel(): void {
         this.serialService.editSerial(this.model)
             .subscribe(isOk => {
                 this.source.Name = this.model.Name;

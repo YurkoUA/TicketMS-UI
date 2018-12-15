@@ -1,4 +1,4 @@
-<form #serialForm="ngForm">
+<form #modelForm="ngForm">
     <div class="form-group">
         <label for="Name" class="col-form-label">Назва</label>
         <input type="text" id="Name" name="Name" class="form-control" required maxlength="4" placeholder="Введіть назву серії"
@@ -16,7 +16,7 @@
 
     <div class="modal-footer">
         <button type="button" class="btn btn-primary"
-                (click)="submitForm()" [disabled]="serialForm.invalid">
+                (click)="submitForm()" [disabled]="modelForm.invalid">
             {{ isNew ? "Створити" : "Зберегти" }}
         </button>
 

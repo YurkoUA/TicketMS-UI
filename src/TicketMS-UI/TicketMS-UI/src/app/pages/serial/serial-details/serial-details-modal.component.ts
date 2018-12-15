@@ -4,7 +4,6 @@ import { Serial } from '../../../../models/domain/serial';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
-import { BaseModal } from '../../base-modal';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
@@ -12,16 +11,14 @@ import { SeriesListPageComponent } from '../series-list/series-list-page.compone
 import { ToastrService } from 'ngx-toastr';
 import { PackagesListModalComponent } from '../../package/packages-list/packages-list-modal.component';
 import { PackageService } from '../../../../services/api-services/package.service';
+import { BaseDetailsModal } from '../../base-details-modal';
 
 @Component({
     selector: 'app-serial-details-modal',
     templateUrl: './serial-details-modal.component.html'
 })
-export class SerialDetailsModalComponent extends BaseModal {
-    @Input() serial: Serial = new Serial();
-    @Input() parentComponent: SeriesListPageComponent;
-
-    isEditMode: boolean = false;
+export class SerialDetailsModalComponent extends BaseDetailsModal<Serial> {
+    parentComponent: SeriesListPageComponent;
 
     constructor(
         activeModal: NgbActiveModal,
@@ -38,39 +35,22 @@ export class SerialDetailsModalComponent extends BaseModal {
     }
 
     get canBeDeleted(): boolean {
-        return this.serial.PackagesCount == 0
-            && this.serial.TicketsCount == 0;
-    }
-
-    closeModal(): void {
-        super.closeModal(this.serial);
-    }
-
-    onSerialEdited(serial: Serial): void {
-        this.serial = serial;
-        this.onCancelled();
-    }
-
-    enableEditing(): void {
-        this.isEditMode = true;
-    }
-
-    onCancelled(): void {
-        this.isEditMode = false;
+        return this.model.PackagesCount == 0
+            && this.model.TicketsCount == 0;
     }
 
     deleteSerial(): void {
         let confirm: IConfirmOptions = {
-            message: `Ви дійсно хочете видалити серію "${this.serial.Name}"?`,
-            title: `Видалення серії "${this.serial.Name}"`,
+            message: `Ви дійсно хочете видалити серію "${this.model.Name}"?`,
+            title: `Видалення серії "${this.model.Name}"`,
             yes: 'Видалити',
             no: 'Скасувати',
             onConfirm: () => {
-                this.serialService.deleteSerial(this.serial.Id)
+                this.serialService.deleteSerial(this.model.Id)
                     .subscribe(isOk => {
-                        this.parentComponent.seriesList.remove(this.serial);
+                        this.parentComponent.seriesList.remove(this.model);
 
-                        this.toastr.success(`Серію "${this.serial.Name}" успішно видалено!`);
+                        this.toastr.success(`Серію "${this.model.Name}" успішно видалено!`);
                         this.closeModal();
                     });
             }
@@ -79,12 +59,12 @@ export class SerialDetailsModalComponent extends BaseModal {
     }
 
     openPackagesModal(): void {
-        this.packageService.getBySerial(this.serial.Id)
+        this.packageService.getBySerial(this.model.Id)
             .subscribe(packages => {
                 this.openModal(PackagesListModalComponent, {
                     size: 'lg',
                     onLoad: (component: PackagesListModalComponent) => {
-                        component.title = `Пачки за серією "${this.serial.Name}"`;
+                        component.title = `Пачки за серією "${this.model.Name}"`;
                         component.packagesList = packages;
                     }
                 });

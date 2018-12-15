@@ -16,6 +16,12 @@ import { ColorDetailsModalComponent } from '../color-details/color-details-modal
 export class ColorsListPageComponent extends BasePage implements OnInit {
     colorsList: Color[] = [];
 
+    isLoading: boolean = true;
+
+    get isEmptyList(): boolean {
+        return this.colorsList.length == 0;
+    }
+
     constructor(router: Router,
         activatedRoute: ActivatedRoute,
         location: Location,
@@ -34,6 +40,7 @@ export class ColorsListPageComponent extends BasePage implements OnInit {
         this.colorService.getAll()
             .subscribe(colors => {
                 this.colorsList = colors;
+                this.isLoading = false;
 
                 let id = this.currentId;
 
@@ -53,6 +60,10 @@ export class ColorsListPageComponent extends BasePage implements OnInit {
 
     openColor(color: Color): void {
         this.setUrlId('color', color.Id);
-        this.openModalChangingUrlAndModel(ColorDetailsModalComponent, ['color'], 'color', color);
+        this.openModalChangingUrlAndModel(ColorDetailsModalComponent, ['color'], 'model', color);
+    }
+
+    openCreateModal(): void {
+        alert('test');
     }
 }
