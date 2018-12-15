@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //import { DataTablesModule } from 'angular-datatables';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbPaginationModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
 import { ServicesModule } from '../services/services.module';
@@ -27,6 +27,8 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 import { PackagesListModalComponent } from './pages/package/packages-list/packages-list-modal.component';
 import { ColorEditComponent } from './components/color-edit/color-edit.component';
 import { ColorCreateModalComponent } from './pages/color/color-create/color-create-modal.component';
+import { PackagesMainPageComponent } from './pages/package/packages-main-page/packages-main-page.component';
+import { PackagesListTabComponent } from './components/packages-list-tab/packages-list-tab.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,11 @@ import { ColorCreateModalComponent } from './pages/color/color-create/color-crea
 
         ColorEditComponent,
 
-        ColorCreateModalComponent
+        ColorCreateModalComponent,
+
+        PackagesMainPageComponent,
+
+        PackagesListTabComponent
     ],
     imports: [
         CoreModule,
@@ -63,8 +69,11 @@ import { ColorCreateModalComponent } from './pages/color/color-create/color-crea
         HttpClientModule,
         BrowserAnimationsModule,
 
+        ToastrModule.forRoot(),
+
         NgbModalModule,
-        ToastrModule.forRoot()
+        NgbPaginationModule,
+        NgbTabsetModule
         //DataTablesModule
     ],
     providers: [],

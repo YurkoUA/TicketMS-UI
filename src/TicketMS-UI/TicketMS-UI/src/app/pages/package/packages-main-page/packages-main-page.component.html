@@ -1,0 +1,48 @@
+<h2>Пачки</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-3 col-sm-12">
+        <div class="list-group">
+            <a href="" class="list-group-item">Пачки</a>
+            <a href="" class="list-group-item" *ngIf="isAdmin">Створити пачку</a>
+            <a href="" class="list-group-item">Пошук пачок</a>
+            <a href="" class="list-group-item">Фільтр</a>
+        </div>
+    </div>
+
+    <div class="col-md-9 col-sm-12">
+        <ngb-tabset justify="justified" *ngIf="!isLoading">
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                    Всі <span class="badge badge-secondary">{{ totalModel.TotalCount }}</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <app-packages-list-tab [total]="totalModel.TotalCount"
+                        [requestModel]="allModel"></app-packages-list-tab>
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab [disabled]="totalModel.OpenedCount == 0">
+                <ng-template ngbTabTitle>
+                    Відкриті <span class="badge badge-secondary">{{ totalModel.OpenedCount }}</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <app-packages-list-tab [total]="totalModel.OpenedCount"
+                        [requestModel]="openedModel"></app-packages-list-tab>
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab [disabled]="totalModel.SpecialCount == 0">
+                <ng-template ngbTabTitle>
+                    Спеціальні <span class="badge badge-secondary">{{ totalModel.SpecialCount }}</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <app-packages-list-tab [total]="totalModel.SpecialCount"
+                        [requestModel]="specialModel"
+                        hideFirstDigitColumn="true"></app-packages-list-tab>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>

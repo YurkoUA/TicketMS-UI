@@ -9,6 +9,7 @@ import { AuthorizeGuard } from '../core/guards/authorize.guard';
 import { LogoutGuard } from '../core/guards/log-out.guard';
 import { SeriesListPageComponent } from './pages/serial/series-list/series-list-page.component';
 import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
+import { PackagesMainPageComponent } from './pages/package/packages-main-page/packages-main-page.component';
 
 const routes: Routes = [
     { path: '', component: MainPageComponent },
@@ -20,6 +21,8 @@ const routes: Routes = [
 
     { path: 'color', component: ColorsListPageComponent },
     { path: 'color/:id', component: ColorsListPageComponent },
+
+    { path: 'package', component: PackagesMainPageComponent },
 
     { path: '**', redirectTo: '/' }
 ];
