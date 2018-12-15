@@ -26,6 +26,7 @@ import { SerialCreateModalComponent } from './pages/serial/serial-create/serial-
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { PackagesListModalComponent } from './pages/package/packages-list/packages-list-modal.component';
 import { ColorEditComponent } from './components/color-edit/color-edit.component';
+import { ColorCreateModalComponent } from './pages/color/color-create/color-create-modal.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,9 @@ import { ColorEditComponent } from './components/color-edit/color-edit.component
 
         SerialEditComponent,
 
-        ColorEditComponent
+        ColorEditComponent,
+
+        ColorCreateModalComponent
     ],
     imports: [
         CoreModule,
@@ -71,6 +74,7 @@ import { ColorEditComponent } from './components/color-edit/color-edit.component
         SerialCreateModalComponent,
 
         ColorDetailsModalComponent,
+        ColorCreateModalComponent,
 
         PackagesListModalComponent,
 

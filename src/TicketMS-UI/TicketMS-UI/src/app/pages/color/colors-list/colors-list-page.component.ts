@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ColorDetailsModalComponent } from '../color-details/color-details-modal.component';
+import { ColorCreateModalComponent } from '../color-create/color-create-modal.component';
 
 @Component({
     selector: 'app-colors-list-page',
@@ -64,6 +65,12 @@ export class ColorsListPageComponent extends BasePage implements OnInit {
     }
 
     openCreateModal(): void {
-        alert('test');
+        this.openModal(ColorCreateModalComponent, {
+            onClose: (color: Color) => {
+                if (color.Id) {
+                    this.colorsList.push(color);
+                }
+            }
+        });
     }
 }

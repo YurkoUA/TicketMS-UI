@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h4 class="modal-title">Додати новий колір</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <app-color-edit (onSubmitted)="onColorCreated($event)" (onCancelled)="closeModal()"></app-color-edit>
+</div>
