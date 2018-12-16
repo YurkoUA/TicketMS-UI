@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-md-9 col-sm-12">
-        <ngb-tabset justify="justified" *ngIf="!isLoading">
+        <ngb-tabset justify="justified" *ngIf="!isLoading" [destroyOnHide]="false">
             <ngb-tab>
                 <ng-template ngbTabTitle>
                     Всі <span class="badge badge-secondary">{{ totalModel.TotalCount }}</span>

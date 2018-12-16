@@ -29,6 +29,7 @@ import { ColorEditComponent } from './components/color-edit/color-edit.component
 import { ColorCreateModalComponent } from './pages/color/color-create/color-create-modal.component';
 import { PackagesMainPageComponent } from './pages/package/packages-main-page/packages-main-page.component';
 import { PackagesListTabComponent } from './components/packages-list-tab/packages-list-tab.component';
+import { PackageDetailsModalComponent } from './pages/package/package-details/package-details-modal.component';
 
 @NgModule({
     declarations: [
@@ -39,24 +40,20 @@ import { PackagesListTabComponent } from './components/packages-list-tab/package
         SeriesListPageComponent,
         SerialDetailsModalComponent,
         SerialCreateModalComponent,
+        SerialEditComponent,
 
         ColorsListPageComponent,
         ColorDetailsModalComponent,
+        ColorEditComponent,
+        ColorCreateModalComponent,
 
         PackagesListModalComponent,
+        PackagesMainPageComponent,
+        PackagesListTabComponent,
+        PackageDetailsModalComponent,
 
         AuthPanelComponent,
         ConfirmModalComponent,
-
-        SerialEditComponent,
-
-        ColorEditComponent,
-
-        ColorCreateModalComponent,
-
-        PackagesMainPageComponent,
-
-        PackagesListTabComponent
     ],
     imports: [
         CoreModule,
@@ -86,6 +83,7 @@ import { PackagesListTabComponent } from './components/packages-list-tab/package
         ColorCreateModalComponent,
 
         PackagesListModalComponent,
+        PackageDetailsModalComponent,
 
         ConfirmModalComponent
     ],

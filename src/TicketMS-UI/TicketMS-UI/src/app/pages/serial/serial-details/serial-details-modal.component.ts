@@ -25,13 +25,13 @@ export class SerialDetailsModalComponent extends BaseDetailsModal<Serial> {
         location: Location,
         authService: AuthenticationService,
         modalService: NgbModal,
-        private router: Router,
-        private activeRoute: ActivatedRoute,
+        router: Router,
+        activeRoute: ActivatedRoute,
         private serialService: SerialService,
         private toastr: ToastrService,
         private packageService: PackageService) {
 
-        super(activeModal, location, authService, modalService);
+        super(activeModal, location, activeRoute, router, authService, modalService);
     }
 
     get canBeDeleted(): boolean {

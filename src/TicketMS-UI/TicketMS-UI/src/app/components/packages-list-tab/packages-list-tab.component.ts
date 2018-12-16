@@ -7,6 +7,9 @@ import { PackageService } from '../../../services/api-services/package.service';
 import { PagingModel } from '../../../models/paging.model';
 import { Package } from '../../../models/domain/package';
 import { PAGE_SIZE } from '../../../models/constants';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { PackageDetailsModalComponent } from '../../pages/package/package-details/package-details-modal.component';
 
 @Component({
     selector: 'app-packages-list-tab',
@@ -32,12 +35,15 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
 
     constructor(authenticationService: AuthenticationService,
         modalService: NgbModal,
+        router: Router,
+        activeRoute: ActivatedRoute,
+        location: Location,
         private packageService: PackageService) {
-        super(authenticationService, modalService);
+
+        super(authenticationService, modalService, location, activeRoute, router);
     }
 
     ngOnInit(): void {
-        // TODO: Remove that.
         this.loadPackages();
     }
     
@@ -58,6 +64,18 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
                     this.total = packagesPage.TotalCount;
                     this.onTotalChanged.emit(this.total);
                 }
+            });
+    }
+
+    openPackageDetails(p: Package): void {
+        this.packageService.getById(p.Id)
+            .subscribe(pack => {
+                p = pack;
+
+                this.setUrlId('package', p.Id);
+                this.openModalChangingUrlAndModel(PackageDetailsModalComponent, ['package'], 'model', pack, undefined, {
+                    size: 'lg'
+                });
             });
     }
 

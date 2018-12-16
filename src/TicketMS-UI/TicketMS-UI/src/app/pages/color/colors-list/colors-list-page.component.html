@@ -23,7 +23,7 @@
                     <tr *ngFor="let c of colorsList">
                         <td>{{ c.Id }}</td>
                         <td>
-                            <a href="/color/{{c.Id}}" (modalClick)="openColor(c)">
+                            <a [urlTree]="['color', c.Id]" (modalClick)="openColor(c)">
                                 {{ c.Name }}
                             </a>
                         </td>

@@ -6,47 +6,12 @@ import { BaseComponent } from "../base-component";
 
 export abstract class BasePage extends BaseComponent {
     constructor(
-        protected router: Router,
-        protected activeRoute: ActivatedRoute,
-        protected location: Location,
+        router: Router,
+        activeRoute: ActivatedRoute,
+        location: Location,
         modalService: NgbModal,
         authenticationService: AuthenticationService
     ) {
-        super(authenticationService, modalService);
-    }
-    
-    get currentId(): number {
-        return parseInt(this.activeRoute.snapshot.params['id']);
-    }
-
-    setUrlId(segment: string, id: number): void {
-        let url = this.router.createUrlTree([segment, id], {
-            queryParamsHandling: 'merge'
-        }).toString();
-
-        this.location.go(url);
-    }
-
-    openModalChangingUrlAndModel(component: any, url: string[], modalProperty: string, model: any, onClose?: Function): NgbModalRef {
-        let modal = this.modalService.open(component, {
-            keyboard: false,
-            backdrop: 'static'
-        });
-
-        modal.result.then(r => {
-            let urlToGo = this.router.createUrlTree(url, {
-                queryParamsHandling: 'merge'
-            }).toString();
-            
-            this.location.go(urlToGo);
-
-            if (onClose) {
-                onClose(r != null ? r : null);
-            }
-        }, r => { });
-
-        modal.componentInstance[modalProperty] = model;
-        modal.componentInstance['parentComponent'] = this;
-        return modal;
+        super(authenticationService, modalService, location, activeRoute, router);
     }
 }

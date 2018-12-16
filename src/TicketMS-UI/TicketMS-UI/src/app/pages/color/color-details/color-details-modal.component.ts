@@ -23,13 +23,13 @@ export class ColorDetailsModalComponent extends BaseDetailsModal<Color> {
         modalService: NgbModal,
         location: Location,
         authService: AuthenticationService,
+        router: Router,
+        activeRoute: ActivatedRoute,
         private colorService: ColorService,
-        private router: Router,
-        private activeRoute: ActivatedRoute,
         private packageService: PackageService,
         private toastr: ToastrService) {
 
-        super(activeModal, location, authService, modalService);
+        super(activeModal, location, activeRoute, router, authService, modalService);
     }
 
     get canBeDeleted(): boolean {

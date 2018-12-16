@@ -4,6 +4,7 @@ import { BaseModal } from '../../base-modal';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 import { AuthenticationService } from '../../../../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-packages-list-modal',
@@ -16,8 +17,10 @@ export class PackagesListModalComponent extends BaseModal {
     constructor(activeModal: NgbActiveModal,
         modalService: NgbModal,
         location: Location,
+        activeRoute: ActivatedRoute,
+        router: Router,
         authService: AuthenticationService) {
 
-        super(activeModal, location, authService, modalService);
+        super(activeModal, location, activeRoute, router, authService, modalService);
     }
 }

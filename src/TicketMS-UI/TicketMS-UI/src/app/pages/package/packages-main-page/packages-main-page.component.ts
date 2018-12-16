@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { PackagesTotalModel } from '../../../../models/packages-total.model';
 import { PackageService } from '../../../../services/api-services/package.service';
 import { PackagesGetListModel } from '../../../../models/packages-get-list.model';
+import { UiUtilService } from '../../../../services/ui-services/ui-util.service';
 
 @Component({
     selector: 'app-packages-main-page',
@@ -26,14 +27,14 @@ export class PackagesMainPageComponent extends BasePage implements OnInit, OnDes
         location: Location,
         modalService: NgbModal,
         authenticationService: AuthenticationService,
-        private packageService: PackageService
+        private packageService: PackageService,
+        private uiUtils: UiUtilService
     ) {
         super(router, activeRoute, location, modalService, authenticationService);
     }
 
     ngOnInit(): void {
-        $('main').removeClass('container');
-        $('main').addClass('container-fluid');
+        this.uiUtils.setContainerFluid();
 
         this.allModel = new PackagesGetListModel(false, false);
         this.openedModel = new PackagesGetListModel(false, true);
@@ -43,9 +44,7 @@ export class PackagesMainPageComponent extends BasePage implements OnInit, OnDes
     }
     
     ngOnDestroy(): void {
-        // TODO: Move to service.
-        $('main').removeClass('container-fluid');
-        $('main').addClass('container');
+        this.uiUtils.setContainer();
     }
     
     loadCount(): void {

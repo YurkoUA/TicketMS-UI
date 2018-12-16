@@ -13,7 +13,9 @@
     <tbody>
         <tr *ngFor="let p of packagesList">
             <td>{{ p.Id }}</td>
-            <td>{{ p.Name }}</td>
+            <td>
+                <a [urlTree]="['package', p.Id]" (modalClick)="openPackageDetails(p)">{{ p.Name }}</a>
+            </td>
             <td>{{ p.TicketsCount }}</td>
             <td>{{ p | packageStatus }}</td>
             <td>{{ p.Nominal.Value }}</td>

@@ -7,6 +7,8 @@ import { ModalClickDirective } from './directives/modal-click.directive';
 import { SerialNameValidator } from './validators/serial-name.validator.directive';
 import { PreventDefaultClickDirective } from './directives/prevent-default-click.directive';
 import { PackageStatusPipe } from './pipes/package-status.pipe';
+import { YesNoPipe } from './pipes/yes-no.pipe';
+import { UrlTreeDirective } from './directives/url-tree.directive';
 
 @NgModule({
     providers: [
@@ -21,15 +23,19 @@ import { PackageStatusPipe } from './pipes/package-status.pipe';
         ModalClickDirective,
         SerialNameValidator,
         PreventDefaultClickDirective,
+        UrlTreeDirective,
 
-        PackageStatusPipe
+        PackageStatusPipe,
+        YesNoPipe
     ],
     exports: [
         ModalClickDirective,
         SerialNameValidator,
         PreventDefaultClickDirective,
+        UrlTreeDirective,
         
-        PackageStatusPipe
+        PackageStatusPipe,
+        YesNoPipe
     ]
 })
 export class CoreModule {

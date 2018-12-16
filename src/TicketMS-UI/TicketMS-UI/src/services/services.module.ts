@@ -4,6 +4,7 @@ import { AccountService } from './api-services/account.service';
 import { SerialService } from './api-services/serial.service';
 import { ColorService } from './api-services/color.service';
 import { PackageService } from './api-services/package.service';
+import { UiUtilService } from './ui-services/ui-util.service';
 
 @NgModule({
     providers: [
@@ -11,7 +12,9 @@ import { PackageService } from './api-services/package.service';
         AuthenticationService,
         SerialService,
         ColorService,
-        PackageService
+        PackageService,
+
+        UiUtilService
     ],
     imports: [
     ]
