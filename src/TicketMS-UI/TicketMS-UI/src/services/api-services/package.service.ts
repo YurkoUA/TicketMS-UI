@@ -8,6 +8,9 @@ import { Package } from '../../models/domain/package';
 import { PackagesGetListModel } from '../../models/packages-get-list.model';
 import { PagingResponseModel } from '../../models/paging-response.model';
 import { PackagesTotalModel } from '../../models/packages-total.model';
+import { PackageCreateModel } from '../../models/package-create.model';
+import { Identifier } from '../../models/identifier.model';
+import { PackageSpecialCreateModel } from '../../models/package-special-create.model';
 
 @Injectable()
 export class PackageService extends BaseRestApiService {
@@ -37,5 +40,21 @@ export class PackageService extends BaseRestApiService {
 
     getById(id: number): Observable<Package> {
         return this.get('Get', { id: id });
+    }
+
+    createPackage(packageModel: PackageCreateModel): Observable<Identifier> {
+        return this.post('', packageModel);
+    }
+
+    createSpecialPackage(packageModel: PackageSpecialCreateModel): Observable<Identifier> {
+        return this.post('Special', packageModel);
+    }
+
+    editPackage(packageModel: PackageCreateModel): Observable<boolean> {
+        return this.put('', packageModel, { id: packageModel.Id });
+    }
+
+    editSpecialPackage(packageModel: PackageSpecialCreateModel): Observable<boolean> {
+        return this.put('Special', packageModel, { id: packageModel.Id });
     }
 }

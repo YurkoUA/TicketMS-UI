@@ -1,0 +1,4 @@
+<select class="form-control" [(ngModel)]="modelId">
+    <option *ngIf="nullItem" value="">{{nullItemText}}</option>
+    <option *ngFor="let i of items" [ngValue]="i.Value">{{i.Name}}</option>
+</select>

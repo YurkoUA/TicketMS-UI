@@ -7,15 +7,21 @@ import { Serial } from '../../models/domain/serial';
 import { SerialCreateModel } from '../../models/serial-create.model';
 import { Identifier } from '../../models/identifier.model';
 import { ToastrService } from 'ngx-toastr';
+import { NameValueModel } from '../../models/name-value.model';
+import { INameValuesService } from '../interfaces/name-values-service-interface';
 
 @Injectable()
-export class SerialService extends BaseRestApiService {
+export class SerialService extends BaseRestApiService implements INameValuesService<number> {
     constructor(http: HttpClient, headersService: HeadersManagerService, toastr: ToastrService) {
         super('/api/Serial/', http, toastr, headersService);
     }
 
     getAll(): Observable<Serial[]> {
         return this.get('List');
+    }
+
+    getItems(): Observable<NameValueModel<number>[]> {
+        return this.get('NameValues');
     }
 
     getById(id: number): Observable<Serial> {

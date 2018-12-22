@@ -5,14 +5,27 @@ import { SerialService } from './api-services/serial.service';
 import { ColorService } from './api-services/color.service';
 import { PackageService } from './api-services/package.service';
 import { UiUtilService } from './ui-services/ui-util.service';
+import { NominalService } from './api-services/nominal.service';
 
 @NgModule({
     providers: [
         AccountService,
+        { provide: 'AccountService', useExisting: AccountService }, 
+
         AuthenticationService,
+        { provide: 'AuthenticationService', useExisting: AuthenticationService },
+
         SerialService,
+        { provide: 'SerialService', useExisting: SerialService },
+
         ColorService,
+        { provide: 'ColorService', useExisting: ColorService },
+
         PackageService,
+        { provide: 'PackageService', useExisting: PackageService },
+
+        NominalService,
+        { provide: 'NominalService', useExisting: NominalService },
 
         UiUtilService
     ],

@@ -30,6 +30,8 @@ import { ColorCreateModalComponent } from './pages/color/color-create/color-crea
 import { PackagesMainPageComponent } from './pages/package/packages-main-page/packages-main-page.component';
 import { PackagesListTabComponent } from './components/packages-list-tab/packages-list-tab.component';
 import { PackageDetailsModalComponent } from './pages/package/package-details/package-details-modal.component';
+import { SelectListComponent } from './components/select-list/select-list.component';
+import { PackageEditComponent } from './components/package-edit/package-edit.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +56,8 @@ import { PackageDetailsModalComponent } from './pages/package/package-details/pa
 
         AuthPanelComponent,
         ConfirmModalComponent,
+        SelectListComponent,
+        PackageEditComponent
     ],
     imports: [
         CoreModule,

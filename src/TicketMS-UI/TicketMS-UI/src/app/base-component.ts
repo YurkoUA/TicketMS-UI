@@ -79,6 +79,38 @@ export abstract class BaseComponent {
         modal.componentInstance['parentComponent'] = this;
         return modal;
     }
+
+    openModalChangingUrl(component: any, url: string[], options?: IModalOpenOptions): NgbModalRef {
+        let modalOpts: NgbModalOptions = {
+            keyboard: false,
+            backdrop: 'static'
+        };
+
+        if (options && options.size) {
+            modalOpts.size = options.size;
+        }
+
+        let modal = this.modalService.open(component, modalOpts);
+
+        modal.result.then(r => {
+            if (options && options.onClose) {
+                options.onClose(r != null ? r : null);
+            }
+
+            let urlToGo = this.router.createUrlTree(url, {
+                queryParamsHandling: 'merge'
+            }).toString();
+            
+            this.location.go(urlToGo);
+        }, r => { });
+
+        if (options && options.onLoad) {
+            options.onLoad(modal.componentInstance);
+        }
+
+        modal.componentInstance['parentComponent'] = this;
+        return modal;
+    }
     
     openModalChangingUrlAndModel(component: any, url: string[], modalProperty: string, model: any, onClose?: Function, options?: IModalOpenOptions): NgbModalRef {
         let modalOpts: NgbModalOptions = {

@@ -7,15 +7,21 @@ import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Identifier } from '../../models/identifier.model';
 import { ColorCreateModel } from '../../models/color-create.model';
+import { NameValueModel } from '../../models/name-value.model';
+import { INameValuesService } from '../interfaces/name-values-service-interface';
 
 @Injectable()
-export class ColorService extends BaseRestApiService {
+export class ColorService extends BaseRestApiService implements INameValuesService<number> {
     constructor(http: HttpClient, headersService: HeadersManagerService, toastr: ToastrService) {
         super('/api/Color/', http, toastr, headersService);
     }
 
     getAll(): Observable<Color[]> {
         return this.get('List');
+    }
+
+    getItems(): Observable<NameValueModel<number>[]> {
+        return this.get('NameValues');
     }
 
     getById(id: number): Observable<Color> {

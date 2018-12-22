@@ -68,15 +68,16 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
     }
 
     openPackageDetails(p: Package): void {
-        this.packageService.getById(p.Id)
-            .subscribe(pack => {
-                p = pack;
-
-                this.setUrlId('package', p.Id);
-                this.openModalChangingUrlAndModel(PackageDetailsModalComponent, ['package'], 'model', pack, undefined, {
-                    size: 'lg'
-                });
-            });
+        this.setUrlId('package', p.Id);
+        this.openModalChangingUrl(PackageDetailsModalComponent, ['package'], {
+            size: 'lg',
+            onLoad: (comp: PackageDetailsModalComponent) => {
+                comp.loadPackage(p.Id);
+            },
+            onClose: (editedPack: Package) => {
+                this.packagesList.replace(p, editedPack);
+            }
+        });
     }
 
     updatePaging(pageNumber: number): void {

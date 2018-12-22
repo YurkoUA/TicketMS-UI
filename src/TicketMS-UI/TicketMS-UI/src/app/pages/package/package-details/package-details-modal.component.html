@@ -1,12 +1,12 @@
 <div class="modal-header">
-    <h4 class="modal-title">Пачка "{{ model.Name }}"</h4>
+    <h4 class="modal-title" *ngIf="model.Id">Пачка "{{ model.Name }}"</h4>
     <button type="button" class="close" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 
 <div class="modal-body">
-    <div *ngIf="!isEditMode">
+    <div *ngIf="!isEditMode && model.Id">
         <dl class="row">
             <dt class="col-md-4 col-sm-12">ID</dt>
             <dd class="col-md-8 col-sm-12">{{ model.Id }}</dd>
@@ -51,11 +51,11 @@
     </div>
 
     <div *ngIf="isEditMode">
-
+        <app-package-edit [source]="model" (onSubmitted)="onModelEdited($event)" (onCancelled)="onCancelled()"></app-package-edit>
     </div>
 </div>
 
-<div class="modal-footer" *ngIf="!isEditMode">
+<div class="modal-footer" *ngIf="!isEditMode && model.Id">
     <button type="button" class="btn btn-info" *ngIf="model.TicketsCount">
         Список квитків ({{ model.TicketsCount }})
     </button>
@@ -63,6 +63,8 @@
     <button type="button" class="btn btn-primary" *ngIf="model.UnallocatedToMoveCount && isAdmin">
         Перемістити нерозподілені квитки ({{ model.UnallocatedToMoveCount }})
     </button>
+
+    <button type="button" class="btn btn-primary" (click)="enableEditing()" *ngIf="isAdmin && !model.IsSpecial">Редагувати</button>
 
     <button type="button" class="btn btn-danger"
         (click)="deletePackage()" *ngIf="canBeDeleted && isAdmin">Видалити</button>

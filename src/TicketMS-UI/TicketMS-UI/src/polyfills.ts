@@ -83,10 +83,34 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 declare global {
     interface Array<T> {
         remove(value: T): void;
+        replace(source: T, destination: T): void;
+        firstOrDefault(): T;
+        lastOrDefault(): T;
     }
 }
 
-Array.prototype.remove = function<T>(this: T[], value: T) {
+Array.prototype.remove = function<T>(this: T[], value: T): void {
     let index = this.indexOf(value);
     this.splice(index, 1);
+}
+
+Array.prototype.replace = function<T>(this: T[], source: T, destination: T): void {
+    let index = this.indexOf(source);
+    this[index] = destination;
+}
+
+Array.prototype.firstOrDefault = function<T>(this: T[]): T {
+    if (!this || this.length == 0) {
+        return null;
+    }
+
+    return this[0];
+}
+
+Array.prototype.lastOrDefault = function<T>(this: T[]): T {
+    if (!this || this.length == 0) {
+        return null;
+    }
+
+    return this[this.length - 1];
 }

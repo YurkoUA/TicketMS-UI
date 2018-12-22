@@ -25,23 +25,13 @@
                         "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/ngx-toastr/toastr.css",
-                            //"node_modules/datatables.net-dt/css/jquery.dataTables.min.css",
-                            //"node_modules/datatables.net-responsive-dt/css/responsive.dataTables.min.css",
-                            //"node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css",
-
-                            //"src/styles/dataTables.bootstrap4.min.css",
                             "src/styles/sticky-footer-navbar.css",
                             "src/styles/styles.css"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
                             "node_modules/popper.js/dist/umd/popper.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
-                            //"node_modules/datatables.net/js/jquery.dataTables.min.js",
-                            //"node_modules/datatables.net-responsive/js/dataTables.responsive.min.js",
-                            //"node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js",
-
-                            //"src/scripts/dataTables.bootstrap4.min.js"
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
                         ]
                     },
                     "configurations": {
@@ -85,7 +75,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "TicketMS-UI:build",
+                        "browserTarget": "TicketMS-UI:build"
                     }
                 },
                 "test": {

@@ -32,4 +32,8 @@ export abstract class BaseDetailsModal<TModel> extends BaseModal {
         this.model = model;
         this.onCancelled();
     }
+
+    closeModal():void {
+        super.closeModal(this.model);
+    }
 }

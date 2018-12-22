@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BaseDetailsModal } from '../../base-details-modal';
 import { Package } from '../../../../models/domain/package';
@@ -31,6 +31,16 @@ export class PackageDetailsModalComponent extends BaseDetailsModal<Package> {
 
     get canBeDeleted(): boolean {
         return this.model.TicketsCount == 0;
+    }
+
+    loadPackage(id: number): void {
+        this.packageService.getById(id)
+            .subscribe(p => this.model = p);
+    }
+
+    onModelEdited(pack: Package): void {
+        this.loadPackage(pack.Id);
+        super.onModelEdited(pack);
     }
 
     deletePackage(): void {
