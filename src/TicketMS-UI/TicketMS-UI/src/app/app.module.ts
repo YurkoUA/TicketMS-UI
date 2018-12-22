@@ -32,6 +32,7 @@ import { PackagesListTabComponent } from './components/packages-list-tab/package
 import { PackageDetailsModalComponent } from './pages/package/package-details/package-details-modal.component';
 import { SelectListComponent } from './components/select-list/select-list.component';
 import { PackageEditComponent } from './components/package-edit/package-edit.component';
+import { PackageSpecialEditComponent } from './components/package-special-edit/package-special-edit.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { PackageEditComponent } from './components/package-edit/package-edit.com
         AuthPanelComponent,
         ConfirmModalComponent,
         SelectListComponent,
-        PackageEditComponent
+        PackageEditComponent,
+        PackageSpecialEditComponent
     ],
     imports: [
         CoreModule,

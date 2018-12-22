@@ -75,7 +75,9 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
                 comp.loadPackage(p.Id);
             },
             onClose: (editedPack: Package) => {
-                this.packagesList.replace(p, editedPack);
+                if (editedPack.Id && editedPack.Id > 0) {
+                    this.packagesList.replace(p, editedPack);
+                }
             }
         });
     }

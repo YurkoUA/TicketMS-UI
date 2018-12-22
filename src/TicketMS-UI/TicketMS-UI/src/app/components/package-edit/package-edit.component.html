@@ -1,20 +1,32 @@
 <form #modelForm="ngForm">
-    <div class="form-group">
+    <div class="form-group" *ngIf="showSelectors">
         <label for="ColorId" class="col-form-label">Колір</label>
         <app-select-list id="ColorId" name="ColorId" [type]="SelectListType.Color" [(ngModel)]="model.ColorId" #_colorId="ngModel"></app-select-list>
         <span class="text-danger" *ngIf="_colorId.touched && _colorId.errors?.selected">Необхідно обрати колір.</span>
     </div>
 
-    <div class="form-group">
+    <div class="alert alert-warning" role="alert" *ngIf="!showSelectors">
+        Неможливо змінити колір, оскільки пачка вже містить квитки.
+    </div>
+
+    <div class="form-group" *ngIf="showSelectors">
         <label for="SerialId" class="col-form-label">Серія</label>
         <app-select-list id="SerialId" name="SerialId" [type]="SelectListType.Serial" [(ngModel)]="model.SerialId" #_serialId="ngModel"></app-select-list>
         <span class="text-danger" *ngIf="_serialId.touched && _serialId.errors?.selected">Необхідно обрати серію.</span>
     </div>
 
-    <div class="form-group">
+    <div class="alert alert-warning" role="alert" *ngIf="!showSelectors">
+        Неможливо змінити серію, оскільки пачка вже містить квитки.
+    </div>
+
+    <div class="form-group" *ngIf="showSelectors">
         <label for="NominalId" class="col-form-label">Номінал</label>
         <app-select-list id="NominalId" name="NominalId" [type]="SelectListType.Nominal" [(ngModel)]="model.NominalId" #_nominalId="ngModel"></app-select-list>
         <span class="text-danger" *ngIf="_nominalId.touched && _nominalId.errors?.selected">Необхідно обрати номінал.</span>
+    </div>
+
+    <div class="alert alert-warning" role="alert" *ngIf="!showSelectors">
+        Неможливо змінити номінал, оскільки пачка вже містить квитки.
     </div>
 
     <div class="form-group">

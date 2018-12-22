@@ -51,7 +51,8 @@
     </div>
 
     <div *ngIf="isEditMode">
-        <app-package-edit [source]="model" (onSubmitted)="onModelEdited($event)" (onCancelled)="onCancelled()"></app-package-edit>
+        <app-package-edit *ngIf="!model.IsSpecial" [source]="model" (onSubmitted)="onModelEdited($event)" (onCancelled)="onCancelled()"></app-package-edit>
+        <app-package-special-edit *ngIf="model.IsSpecial" [source]="model" (onSubmitted)="onModelEdited($event)" (onCancelled)="onCancelled()"></app-package-special-edit>
     </div>
 </div>
 
@@ -64,7 +65,7 @@
         Перемістити нерозподілені квитки ({{ model.UnallocatedToMoveCount }})
     </button>
 
-    <button type="button" class="btn btn-primary" (click)="enableEditing()" *ngIf="isAdmin && !model.IsSpecial">Редагувати</button>
+    <button type="button" class="btn btn-primary" (click)="enableEditing()" *ngIf="isAdmin">Редагувати</button>
 
     <button type="button" class="btn btn-danger"
         (click)="deletePackage()" *ngIf="canBeDeleted && isAdmin">Видалити</button>

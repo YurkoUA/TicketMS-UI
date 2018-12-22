@@ -19,6 +19,10 @@ export class PackageEditComponent extends SubmitComponentBase<PackageCreateModel
         super();
     }
 
+    get showSelectors(): boolean {
+        return this.isNew || this.source.TicketsCount == 0;
+    }
+
     ngOnInit(): void {
         this.model.Id = this.source.Id;
         this.model.ColorId = this.source.Color.Id;

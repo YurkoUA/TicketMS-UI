@@ -93,7 +93,7 @@ export class SelectListComponent implements OnInit, ControlValueAccessor, Valida
     }
     
     validate(control: AbstractControl): { [key: string]: any; } {
-        if (!this.modelId || isNaN(this.modelId)) {
+        if (!this.nullItem && (!this.modelId || isNaN(this.modelId))) {
             return {
                 selected: false
             };
