@@ -1,4 +1,4 @@
-<form #modelForm="ngForm">
+<form #modelForm="ngForm" *ngIf="model">
     <div class="form-group" *ngIf="showSelectors">
         <label for="ColorId" class="col-form-label">Колір</label>
         <app-select-list id="ColorId" name="ColorId" [type]="SelectListType.Color" [(ngModel)]="model.ColorId" #_colorId="ngModel"></app-select-list>

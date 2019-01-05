@@ -24,12 +24,16 @@ export class PackageEditComponent extends SubmitComponentBase<PackageCreateModel
     }
 
     ngOnInit(): void {
-        this.model.Id = this.source.Id;
-        this.model.ColorId = this.source.Color.Id;
-        this.model.SerialId = this.source.Serial.Id;
-        this.model.NominalId = this.source.Nominal.Id;
-        this.model.Note = this.source.Note;
-        this.model.FirstDigit = this.source.FirstDigit;
+        if (this.source) {
+            this.model.Id = this.source.Id;
+
+            this.model.ColorId = this.source.Color ? this.source.Color.Id : 0;
+            this.model.SerialId = this.source.Serial ? this.source.Serial.Id : 0;
+            this.model.NominalId = this.source.Nominal ? this.source.Nominal.Id : 0;
+
+            this.model.Note = this.source.Note;
+            this.model.FirstDigit = this.source.FirstDigit;
+        }
     }
 
     createModel(): void {

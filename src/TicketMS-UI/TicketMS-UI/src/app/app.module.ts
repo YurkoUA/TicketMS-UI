@@ -33,6 +33,7 @@ import { PackageDetailsModalComponent } from './pages/package/package-details/pa
 import { SelectListComponent } from './components/select-list/select-list.component';
 import { PackageEditComponent } from './components/package-edit/package-edit.component';
 import { PackageSpecialEditComponent } from './components/package-special-edit/package-special-edit.component';
+import { PackageCreateModalComponent } from './pages/package/package-create/package-create-modal.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +60,8 @@ import { PackageSpecialEditComponent } from './components/package-special-edit/p
         ConfirmModalComponent,
         SelectListComponent,
         PackageEditComponent,
-        PackageSpecialEditComponent
+        PackageSpecialEditComponent,
+        PackageCreateModalComponent
     ],
     imports: [
         CoreModule,
@@ -91,7 +93,9 @@ import { PackageSpecialEditComponent } from './components/package-special-edit/p
         PackagesListModalComponent,
         PackageDetailsModalComponent,
 
-        ConfirmModalComponent
+        ConfirmModalComponent,
+
+        PackageCreateModalComponent
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

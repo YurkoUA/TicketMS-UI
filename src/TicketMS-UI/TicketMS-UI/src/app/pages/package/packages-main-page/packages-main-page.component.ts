@@ -8,6 +8,7 @@ import { PackagesTotalModel } from '../../../../models/packages-total.model';
 import { PackageService } from '../../../../services/api-services/package.service';
 import { PackagesGetListModel } from '../../../../models/packages-get-list.model';
 import { UiUtilService } from '../../../../services/ui-services/ui-util.service';
+import { PackageCreateModalComponent } from '../package-create/package-create-modal.component';
 
 @Component({
     selector: 'app-packages-main-page',
@@ -53,5 +54,11 @@ export class PackagesMainPageComponent extends BasePage implements OnInit, OnDes
                 this.totalModel = count
                 this.isLoading = false;
             });
+    }
+
+    openCreateModal(): void {
+        this.openModal(PackageCreateModalComponent, {
+            
+        });
     }
 }

@@ -23,6 +23,7 @@ export class SelectListComponent implements OnInit, ControlValueAccessor, Valida
     @Input() type: SelectListType;
     @Input() nullItem: boolean = false;
     @Input() nullItemText: string;
+    @Input() nullable: boolean = false;
 
     modelIdValue: number = null;
 

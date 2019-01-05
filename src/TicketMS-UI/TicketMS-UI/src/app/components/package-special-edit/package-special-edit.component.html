@@ -8,13 +8,13 @@
 
     <div class="form-group">
         <label for="ColorId" class="col-form-label">Колір</label>
-        <app-select-list id="ColorId" name="ColorId" [nullItem]="true" nullItemText="(Не обрано)"
+        <app-select-list id="ColorId" name="ColorId" [nullItem]="true" [nullable]="true" nullItemText="(Не обрано)"
             [type]="SelectListType.Color" [(ngModel)]="model.ColorId" #_colorId="ngModel"></app-select-list>
     </div>
 
     <div class="form-group">
         <label for="SerialId" class="col-form-label">Серія</label>
-        <app-select-list id="SerialId" name="SerialId" [nullItem]="true" nullItemText="(Не обрано)"
+        <app-select-list id="SerialId" name="SerialId" [nullItem]="true" [nullable]="true" nullItemText="(Не обрано)"
             [type]="SelectListType.Serial" [(ngModel)]="model.SerialId" #_serialId="ngModel"></app-select-list>
     </div>
 

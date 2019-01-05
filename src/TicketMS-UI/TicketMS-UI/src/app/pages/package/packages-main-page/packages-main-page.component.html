@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-md-3 col-sm-12">
         <div class="list-group">
-            <a href="" class="list-group-item">Пачки</a>
-            <a href="" class="list-group-item" *ngIf="isAdmin">Створити пачку</a>
+            <a class="list-group-item" 
+                [urlTree]="['package', 'create']" (modalClick)="openCreateModal()" *ngIf="isAdmin">Створити пачку</a>
             <a href="" class="list-group-item">Пошук пачок</a>
             <a href="" class="list-group-item">Фільтр</a>
         </div>

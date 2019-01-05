@@ -20,17 +20,14 @@ export class PackageSpecialEditComponent extends SubmitComponentBase<PackageSpec
      }
 
     ngOnInit(): void {
-        this.model.Id = this.source.Id;
-        this.model.Name = this.source.Name;
-        this.model.NominalId = this.source.Nominal.Id;
-        this.model.Note = this.source.Note;
+        if (this.source) {
+            this.model.Id = this.source.Id;
+            this.model.Name = this.source.Name;
+            this.model.Note = this.source.Note;
 
-        if (this.source.Color) {
-            this.model.ColorId = this.source.Color.Id;
-        }
-
-        if (this.source.Serial) {
-            this.model.SerialId = this.source.Serial.Id;
+            this.model.ColorId = this.source.Color ? this.source.Color.Id : null;
+            this.model.SerialId = this.source.Serial ? this.source.Serial.Id : null;
+            this.model.NominalId = this.source.Nominal ? this.source.Nominal.Id : 0;
         }
     }
 
