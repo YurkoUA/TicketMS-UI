@@ -57,4 +57,8 @@ export class PackageService extends BaseRestApiService {
     editSpecialPackage(packageModel: PackageSpecialCreateModel): Observable<boolean> {
         return this.put('Special', packageModel, { id: packageModel.Id });
     }
+
+    deletePackage(id: number): Observable<boolean> {
+        return this.delete('', { id: id });
+    }
 }

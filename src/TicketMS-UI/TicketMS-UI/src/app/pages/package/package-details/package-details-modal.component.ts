@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../../../services/authentication.servi
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PackageService } from '../../../../services/api-services/package.service';
+import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
 
 @Component({
   selector: 'app-package-details-modal',
@@ -44,6 +45,21 @@ export class PackageDetailsModalComponent extends BaseDetailsModal<Package> {
     }
 
     deletePackage(): void {
-        
+        let confirm: IConfirmOptions = {
+            message: `Ви дійсно хочете видалити пачку "${this.model.Name}"`,
+            title: `Видалення пачки "${this.model.Name}"`,
+            yes: 'Видалити',
+            no: 'Скасувати',
+            onConfirm: () => {
+                this.packageService.deletePackage(this.model.Id)
+                    .subscribe(isOk => {
+                        this.parentComponent.packagesList.removeBy(i => i.Id == this.model.Id);
+                        this.toastr.success(`Пачку "${this.model.Name}" успішно видалено!`);
+                        this.closeModal();
+                    });
+            }
+        };
+
+        this.confirm(confirm);
     }
 }
