@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        {{options.headerText}}: {{length}} шт.
+    </div>
+
+    <div class="card-body">
+        <div [class.table-responsive]="options.styles.isResponsive">
+            <table class="table"    [class.table-hover]="options.styles.isHover" 
+                                    [class.table-bordered]="options.styles.isBordered" 
+                                    [class.table-sm]="options.styles.size == 'sm'" 
+                                    [class.table-lg]="options.styles.size == 'lg'">
+
+                <thead>
+                    <tr>
+                        <th *ngFor="let c of options.columns">
+                            {{c.title}}
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let i of options.items" [ngClass]="getRowClass(i)">
+                        <td *ngFor="let col of options.columns">
+                            <span *ngIf="!col.type || col.type == TableColumnType.Text">
+                                {{getCellTextValue(i, col)}}
+                            </span>
+
+                            <span *ngIf="col.type == TableColumnType.Link">
+                                <controls-table-cell-link [urlTree]="getLinkUrlTreeArray(i, col)" 
+                                    [text]="getLinkText(i, col)"></controls-table-cell-link>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

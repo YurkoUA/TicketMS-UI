@@ -9,6 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PackageService } from '../../../../services/api-services/package.service';
 import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
+import { TicketService } from '../../../../services/api-services/ticket.service';
+import { TicketsListSmModalComponent } from '../../ticket/tickets-list-sm/tickets-list-sm-modal.component';
 
 @Component({
   selector: 'app-package-details-modal',
@@ -25,7 +27,8 @@ export class PackageDetailsModalComponent extends BaseDetailsModal<Package> {
         router: Router,
         activeRoute: ActivatedRoute,
         private toastr: ToastrService,
-        private packageService: PackageService) {
+        private packageService: PackageService,
+        private ticketService: TicketService) {
 
         super(activeModal, location, activeRoute, router, authService, modalService);
     }
@@ -61,5 +64,18 @@ export class PackageDetailsModalComponent extends BaseDetailsModal<Package> {
         };
 
         this.confirm(confirm);
+    }
+
+    openTicketsModal(): void {
+        this.ticketService.getByPackage(this.model.Id)
+            .subscribe(tickets => {
+                this.openModal(TicketsListSmModalComponent, {
+                    size: 'lg',
+                    onLoad: (component: TicketsListSmModalComponent) => {
+                        component.tableOptions.items = tickets;
+                        component.title = `Квитки з пачки "${this.model.Name}"`;
+                    }
+                })
+            });
     }
 }

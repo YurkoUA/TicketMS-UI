@@ -6,6 +6,7 @@ import { ColorService } from './api-services/color.service';
 import { PackageService } from './api-services/package.service';
 import { UiUtilService } from './ui-services/ui-util.service';
 import { NominalService } from './api-services/nominal.service';
+import { TicketService } from './api-services/ticket.service';
 
 @NgModule({
     providers: [
@@ -21,11 +22,14 @@ import { NominalService } from './api-services/nominal.service';
         ColorService,
         { provide: 'ColorService', useExisting: ColorService },
 
+        NominalService,
+        { provide: 'NominalService', useExisting: NominalService },
+
         PackageService,
         { provide: 'PackageService', useExisting: PackageService },
 
-        NominalService,
-        { provide: 'NominalService', useExisting: NominalService },
+        TicketService,
+        { provide: 'TicketService', useExisting: TicketService },
 
         UiUtilService
     ],

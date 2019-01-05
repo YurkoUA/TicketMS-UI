@@ -57,7 +57,7 @@
 </div>
 
 <div class="modal-footer" *ngIf="!isEditMode && model.Id">
-    <button type="button" class="btn btn-info" *ngIf="model.TicketsCount">
+    <button type="button" class="btn btn-info" *ngIf="model.TicketsCount" (click)="openTicketsModal()">
         Список квитків ({{ model.TicketsCount }})
     </button>
 

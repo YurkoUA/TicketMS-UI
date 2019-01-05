@@ -34,6 +34,8 @@ import { SelectListComponent } from './components/select-list/select-list.compon
 import { PackageEditComponent } from './components/package-edit/package-edit.component';
 import { PackageSpecialEditComponent } from './components/package-special-edit/package-special-edit.component';
 import { PackageCreateModalComponent } from './pages/package/package-create/package-create-modal.component';
+import { ControlsModule } from '../controls/controls.module';
+import { TicketsListSmModalComponent } from './pages/ticket/tickets-list-sm/tickets-list-sm-modal.component';
 
 @NgModule({
     declarations: [
@@ -61,12 +63,14 @@ import { PackageCreateModalComponent } from './pages/package/package-create/pack
         SelectListComponent,
         PackageEditComponent,
         PackageSpecialEditComponent,
-        PackageCreateModalComponent
+        PackageCreateModalComponent,
+        TicketsListSmModalComponent
     ],
     imports: [
         CoreModule,
         ServicesModule,
         UtilServicesModule,
+        ControlsModule,
 
         BrowserModule,
         AppRoutingModule,
@@ -95,7 +99,9 @@ import { PackageCreateModalComponent } from './pages/package/package-create/pack
 
         ConfirmModalComponent,
 
-        PackageCreateModalComponent
+        PackageCreateModalComponent,
+
+        TicketsListSmModalComponent
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
