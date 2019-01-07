@@ -9,6 +9,8 @@ import { BasePage } from '../../base-page';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { SerialDetailsModalComponent } from '../serial-details/serial-details-modal.component';
 import { SerialCreateModalComponent } from '../serial-create/serial-create-modal.component';
+import { ITable } from '../../../../controls/table/models/table.interface';
+import { TableColumnType } from '../../../../controls/table/models/table-column-type.enum';
 
 @Component({
     selector: 'app-series-list-page',
@@ -17,6 +19,7 @@ import { SerialCreateModalComponent } from '../serial-create/serial-create-modal
 export class SeriesListPageComponent extends BasePage implements OnInit {
     seriesList: Serial[] = [];
 
+    tableOptions: ITable<Serial>;
     isLoading: boolean = true;
 
     get isEmptyList(): boolean {
@@ -42,6 +45,7 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
             .subscribe(series => {
                 this.seriesList = series;
                 this.isLoading = false;
+                this.initializeTable();
 
                 let id = this.currentId;
 
@@ -52,7 +56,7 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
     }
 
     resolveSerial(id: number): void {
-        let serial = this.seriesList.filter(s => s.Id == id)[0];
+        let serial = this.seriesList.filter(s => s.Id == id).firstOrDefault();
 
         if (serial) {
             this.openSerial(serial);
@@ -74,5 +78,39 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
                 }
             }
         });
+    }
+
+    initializeTable(): void {
+        this.tableOptions = {
+            items: this.seriesList,
+            headerText: 'Список серій',
+            styles: {
+                size: 'sm',
+                isBordered: true,
+                isHover: true,
+                isResponsive: true
+            },
+            columns: [{
+                title: 'ID',
+                property: 'Id'
+            }, {
+                title: 'Назва',
+                type: TableColumnType.Link,
+                cell: {
+                    computedText: (s: Serial) => s.Name,
+                    computedUrlTree: (s: Serial) => ['serial', s.Id],
+                    modalClick: (s: Serial) => this.openSerial(s)
+                }
+            }, {
+                title: 'Пачок',
+                property: 'PackagesCount'
+            }, {
+                title: 'Квитків',
+                property: 'TicketsCount'
+            }, {
+                title: 'Примітка',
+                property: 'Note'
+            }]
+        };
     }
 }

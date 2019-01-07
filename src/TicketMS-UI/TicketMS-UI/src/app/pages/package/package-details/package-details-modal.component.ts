@@ -72,7 +72,7 @@ export class PackageDetailsModalComponent extends BaseDetailsModal<Package> {
                 this.openModal(TicketsListSmModalComponent, {
                     size: 'lg',
                     onLoad: (component: TicketsListSmModalComponent) => {
-                        component.tableOptions.items = tickets;
+                        component.tickets = tickets;
                         component.title = `Квитки з пачки "${this.model.Name}"`;
                     }
                 })

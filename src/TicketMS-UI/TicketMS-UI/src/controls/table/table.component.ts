@@ -44,8 +44,8 @@ export class TableComponent implements OnInit {
             return item[column.property];
         }
 
-        if (column.computed) {
-            return column.computed(item);
+        if (column.computedProperty) {
+            return column.computedProperty(item);
         }
     }
 

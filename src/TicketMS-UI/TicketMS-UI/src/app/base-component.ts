@@ -65,7 +65,7 @@ export abstract class BaseComponent {
         }
 
         let modal = this.modalService.open(component, modalOpts);
-
+        
         modal.result.then(r => {
             if (options && options.onClose) {
                 options.onClose(r != null ? r : null);
@@ -91,7 +91,7 @@ export abstract class BaseComponent {
         }
 
         let modal = this.modalService.open(component, modalOpts);
-
+        
         modal.result.then(r => {
             if (options && options.onClose) {
                 options.onClose(r != null ? r : null);
@@ -123,7 +123,7 @@ export abstract class BaseComponent {
         }
         
         let modal = this.modalService.open(component, modalOpts);
-
+        
         modal.result.then(r => {
             let urlToGo = this.router.createUrlTree(url, {
                 queryParamsHandling: 'merge'

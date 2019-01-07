@@ -59,12 +59,25 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
         this.packageService.getPackages(this.requestModel)
             .subscribe(packagesPage => {
                 this.packagesList = packagesPage.Items;
+                let id = this.currentId;
+
+                if (id && !this.modalService.hasOpenModals()) {
+                    this.resolvePackage(id);
+                }
 
                 if (this.total != packagesPage.TotalCount) {
                     this.total = packagesPage.TotalCount;
                     this.onTotalChanged.emit(this.total);
                 }
             });
+    }
+
+    resolvePackage(id: number): void {
+        let pack = this.packagesList.filter(p => p.Id == id).firstOrDefault();
+
+        if (pack) {
+            this.openPackageDetails(pack);
+        }
     }
 
     openPackageDetails(p: Package): void {

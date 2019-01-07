@@ -23,6 +23,7 @@ const routes: Routes = [
     { path: 'color/:id', component: ColorsListPageComponent },
 
     { path: 'package', component: PackagesMainPageComponent },
+    { path: 'package/:id', component: PackagesMainPageComponent },
 
     { path: '**', redirectTo: '/' }
 ];

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="options">
     <div class="card-header">
         {{options.headerText}}: {{length}} шт.
     </div>
@@ -26,8 +26,10 @@
                             </span>
 
                             <span *ngIf="col.type == TableColumnType.Link">
-                                <controls-table-cell-link [urlTree]="getLinkUrlTreeArray(i, col)" 
-                                    [text]="getLinkText(i, col)"></controls-table-cell-link>
+                                <controls-table-cell-link 
+                                    [urlTree]="getLinkUrlTreeArray(i, col)" 
+                                    [text]="getLinkText(i, col)"
+                                    (modalClick)="col.cell.modalClick(i)"></controls-table-cell-link>
                             </span>
                         </td>
                     </tr>

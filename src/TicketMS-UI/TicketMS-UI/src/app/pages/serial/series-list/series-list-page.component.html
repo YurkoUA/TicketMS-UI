@@ -2,41 +2,9 @@
 <a href="#" preventDefaultClick (click)="openCreateModal()" *ngIf="isAdmin">
     Додати серію
 </a>
-
 <hr />
 
-<div class="card" *ngIf="!isEmptyList">
-    <div class="card-header">
-        Список серій: {{ seriesList.length }} шт.
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-sm table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Назва</th>
-                        <th>Пачок</th>
-                        <th>Квитків</th>
-                        <th>Примітка</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let s of seriesList">
-                        <td>{{ s.Id }}</td>
-                        <td>
-                            <a [urlTree]="['serial', s.Id]" (modalClick)="openSerial(s)">{{ s.Name }}</a>
-                        </td>
-                        <td>{{ s.PackagesCount }}</td>
-                        <td>{{ s.TicketsCount }}</td>
-                        <td>{{ s.Note }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<controls-table [options]="tableOptions"></controls-table>
 
 <div class="alert alert-info" role="alert" *ngIf="isEmptyList && isLoading">
     Завантаження...

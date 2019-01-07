@@ -88,6 +88,7 @@ declare global {
         replace(source: T, destination: T): void;
         firstOrDefault(): T;
         lastOrDefault(): T;
+        exists(value: T): boolean;
     }
 }
 
@@ -136,4 +137,8 @@ Array.prototype.lastOrDefault = function<T>(this: T[]): T {
     }
 
     return this[this.length - 1];
+}
+
+Array.prototype.exists = function<T>(this: T[], value: T): boolean {
+    return this.indexOf(value) > 0;
 }
