@@ -1,9 +1,9 @@
-<div [class.card]="options.styles.withoutCard == undefined || options.styles.withoutCard == false" *ngIf="options">
-    <div class="card-header" *ngIf="options.styles.withoutCard == undefined || options.styles.withoutCard == false">
+<div [class.card]="showInsideCard" *ngIf="options && !isEmpty">
+    <div class="card-header" *ngIf="showInsideCard">
         {{options.headerText}}: {{length}} шт.
     </div>
 
-    <div [class.card-body]="options.styles.withoutCard == undefined || options.styles.withoutCard == false">
+    <div [class.card-body]="showInsideCard">
         <div [class.table-responsive]="options.styles.isResponsive">
             <table class="table"    [class.table-hover]="options.styles.isHover" 
                                     [class.table-bordered]="options.styles.isBordered" 

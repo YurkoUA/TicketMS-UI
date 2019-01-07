@@ -13,7 +13,6 @@ import { PackageDetailsModalComponent } from '../../pages/package/package-detail
 import { ITable } from '../../../controls/table/models/table.interface';
 import { TableColumnType } from '../../../controls/table/models/table-column-type.enum';
 import { PackageStatusPipe } from '../../../core/pipes/package-status.pipe';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-packages-list-tab',

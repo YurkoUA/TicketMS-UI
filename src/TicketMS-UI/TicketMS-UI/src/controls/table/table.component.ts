@@ -22,6 +22,10 @@ export class TableComponent implements OnInit {
         return this.options.items.length;
     }
 
+    get showInsideCard(): boolean {
+        return this.options.styles.withoutCard == undefined || this.options.styles.withoutCard == false
+    }
+
     get visibleColumns(): ITableColumn[] {
         return this.options.columns.filter(c => !c.isHidden);
     }
