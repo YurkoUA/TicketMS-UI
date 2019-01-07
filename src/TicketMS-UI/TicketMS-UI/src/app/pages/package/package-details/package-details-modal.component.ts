@@ -56,7 +56,7 @@ export class PackageDetailsModalComponent extends BaseDetailsModal<Package> {
             onConfirm: () => {
                 this.packageService.deletePackage(this.model.Id)
                     .subscribe(isOk => {
-                        this.parentComponent.packagesList.removeBy(i => i.Id == this.model.Id);
+                        this.parentComponent.refreshAllTabs();
                         this.toastr.success(`Пачку "${this.model.Name}" успішно видалено!`);
                         this.closeModal();
                     });

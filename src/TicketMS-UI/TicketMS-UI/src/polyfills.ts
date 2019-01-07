@@ -89,6 +89,7 @@ declare global {
         firstOrDefault(): T;
         lastOrDefault(): T;
         exists(value: T): boolean;
+        clear(): void;
     }
 }
 
@@ -141,4 +142,8 @@ Array.prototype.lastOrDefault = function<T>(this: T[]): T {
 
 Array.prototype.exists = function<T>(this: T[], value: T): boolean {
     return this.indexOf(value) > 0;
+}
+
+Array.prototype.clear = function<T>(this: T[]): void {
+    this.splice(0, this.length);
 }

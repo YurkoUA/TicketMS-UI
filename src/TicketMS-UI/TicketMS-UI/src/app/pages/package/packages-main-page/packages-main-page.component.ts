@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, QueryList } from '@angular/core';
 import { BasePage } from '../../base-page';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,6 +10,7 @@ import { PackagesGetListModel } from '../../../../models/packages-get-list.model
 import { UiUtilService } from '../../../../services/ui-services/ui-util.service';
 import { PackageCreateModalComponent } from '../package-create/package-create-modal.component';
 import { PackageSearchModalComponent } from '../package-search/package-search-modal.component';
+import { PackagesListTabComponent } from '../../../components/packages-list-tab/packages-list-tab.component';
 
 @Component({
     selector: 'app-packages-main-page',
@@ -22,6 +23,9 @@ export class PackagesMainPageComponent extends BasePage implements OnInit, OnDes
     specialModel: PackagesGetListModel;
 
     isLoading: boolean = true;
+
+    @ViewChildren(PackagesListTabComponent)
+    private tabComponents: QueryList<PackagesListTabComponent>;
 
     constructor(
         router: Router,
@@ -58,12 +62,21 @@ export class PackagesMainPageComponent extends BasePage implements OnInit, OnDes
     }
 
     openCreateModal(): void {
-        this.openModal(PackageCreateModalComponent, {});
+        this.openModal(PackageCreateModalComponent, {
+            onClose: () => {
+                this.refreshTabs();
+            }
+        });
     }
 
     openSearchModal(): void {
         this.openModal(PackageSearchModalComponent, {
             size: 'lg'
         });
+    }
+
+    refreshTabs(): void {
+        this.tabComponents.forEach(c => c.loadPackages());
+        this.loadCount();
     }
 }

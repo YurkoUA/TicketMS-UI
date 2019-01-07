@@ -20,7 +20,8 @@
                 </ng-template>
                 <ng-template ngbTabContent>
                     <app-packages-list-tab [total]="totalModel.TotalCount"
-                        [requestModel]="allModel"></app-packages-list-tab>
+                        [requestModel]="allModel"
+                        (onNeedsRefresh)="refreshTabs()"></app-packages-list-tab>
                 </ng-template>
             </ngb-tab>
 
@@ -30,7 +31,8 @@
                 </ng-template>
                 <ng-template ngbTabContent>
                     <app-packages-list-tab [total]="totalModel.OpenedCount"
-                        [requestModel]="openedModel"></app-packages-list-tab>
+                        [requestModel]="openedModel"
+                        (onNeedsRefresh)="refreshTabs()"></app-packages-list-tab>
                 </ng-template>
             </ngb-tab>
 
@@ -41,6 +43,7 @@
                 <ng-template ngbTabContent>
                     <app-packages-list-tab [total]="totalModel.SpecialCount"
                         [requestModel]="specialModel"
+                        (onNeedsRefresh)="refreshTabs()"
                         hideFirstDigitColumn="true"></app-packages-list-tab>
                 </ng-template>
             </ngb-tab>

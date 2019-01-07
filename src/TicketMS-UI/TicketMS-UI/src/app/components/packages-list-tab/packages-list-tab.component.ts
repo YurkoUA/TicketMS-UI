@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, Inject } from '@angular/core';
 import { BaseComponent } from '../../base-component';
 import { PackagesGetListModel } from '../../../models/packages-get-list.model';
 import { AuthenticationService } from '../../../services/authentication.service';
@@ -13,6 +13,7 @@ import { PackageDetailsModalComponent } from '../../pages/package/package-detail
 import { ITable } from '../../../controls/table/models/table.interface';
 import { TableColumnType } from '../../../controls/table/models/table-column-type.enum';
 import { PackageStatusPipe } from '../../../core/pipes/package-status.pipe';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-packages-list-tab',
@@ -25,6 +26,7 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
     currentPage: number = 1;
 
     @Output() onTotalChanged: EventEmitter<number> = new EventEmitter<number>();
+    @Output() onNeedsRefresh: EventEmitter<any> = new EventEmitter<any>();
 
     packagesList: Package[] = [];
     tableOptions: ITable<Package>;
@@ -58,7 +60,7 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
     }
 
     loadPackages(): void {
-        this.packagesList = [];
+        this.packagesList.clear();
 
         this.packageService.getPackages(this.requestModel)
             .subscribe(packagesPage => {
@@ -140,5 +142,9 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
                 isHidden: this.hideFirstDigitColumn
             }]
         };
+    }
+
+    refreshAllTabs(): void {
+        this.onNeedsRefresh.emit();
     }
 }
