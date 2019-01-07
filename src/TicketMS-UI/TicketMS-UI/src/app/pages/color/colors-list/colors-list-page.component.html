@@ -2,39 +2,9 @@
 <a href="#" preventDefaultClick (click)="openCreateModal()" *ngIf="isAdmin">
     Додати колір
 </a>
-
 <hr />
 
-<div class="card" *ngIf="!isEmptyList">
-    <div class="card-header">Список кольорів: {{ colorsList.length }} шт.</div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-sm table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Назва</th>
-                        <th>Пачок</th>
-                        <th>Квитків</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let c of colorsList">
-                        <td>{{ c.Id }}</td>
-                        <td>
-                            <a [urlTree]="['color', c.Id]" (modalClick)="openColor(c)">
-                                {{ c.Name }}
-                            </a>
-                        </td>
-                        <td>{{ c.PackagesCount }}</td>
-                        <td>{{ c.TicketsCount }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<controls-table [options]="tableOptions"></controls-table>
 
 <div class="alert alert-info" role="alert" *ngIf="isEmptyList && isLoading">
     Завантаження...

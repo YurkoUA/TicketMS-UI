@@ -22,6 +22,10 @@ export class TableComponent implements OnInit {
         return this.options.items.length;
     }
 
+    get visibleColumns(): ITableColumn[] {
+        return this.options.columns.filter(c => !c.isHidden);
+    }
+
     ngOnInit(): void {
     }
 

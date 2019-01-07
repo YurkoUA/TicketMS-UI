@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ColorDetailsModalComponent } from '../color-details/color-details-modal.component';
 import { ColorCreateModalComponent } from '../color-create/color-create-modal.component';
+import { ITable } from '../../../../controls/table/models/table.interface';
+import { TableColumnType } from '../../../../controls/table/models/table-column-type.enum';
 
 @Component({
     selector: 'app-colors-list-page',
@@ -17,6 +19,7 @@ import { ColorCreateModalComponent } from '../color-create/color-create-modal.co
 export class ColorsListPageComponent extends BasePage implements OnInit {
     colorsList: Color[] = [];
 
+    tableOptions: ITable<Color>;
     isLoading: boolean = true;
 
     get isEmptyList(): boolean {
@@ -42,6 +45,7 @@ export class ColorsListPageComponent extends BasePage implements OnInit {
             .subscribe(colors => {
                 this.colorsList = colors;
                 this.isLoading = false;
+                this.initializeTable();
 
                 let id = this.currentId;
 
@@ -72,5 +76,36 @@ export class ColorsListPageComponent extends BasePage implements OnInit {
                 }
             }
         });
+    }
+
+    initializeTable(): void {
+        this.tableOptions = {
+            items: this.colorsList,
+            headerText: 'Список кольорів',
+            styles: {
+                size: 'sm',
+                isBordered: true,
+                isHover: true,
+                isResponsive: true
+            },
+            columns: [{
+                title: 'ID',
+                property: 'Id'
+            }, {
+                title: 'Назва',
+                type: TableColumnType.Link,
+                cell: {
+                    computedText: (c: Color) => c.Name,
+                    computedUrlTree: (c: Color) => ['color', c.Id],
+                    modalClick: (c: Color) => this.openColor(c)
+                }
+            }, {
+                title: 'Пачок',
+                property: 'PackagesCount'
+            }, {
+                title: 'Квитків',
+                property: 'TicketsCount'
+            }]
+        };
     }
 }

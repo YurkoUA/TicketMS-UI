@@ -1,28 +1,4 @@
-<table class="table table-hover table-bordered table-sm" *ngIf="!isEmptyList">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Назва</th>
-            <th>Квитків</th>
-            <th>Статус</th>
-            <th>Номінал</th>
-            <th *ngIf="!hideFirstDigitColumn">Перша цифра</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr *ngFor="let p of packagesList">
-            <td>{{ p.Id }}</td>
-            <td>
-                <a [urlTree]="['package', p.Id]" (modalClick)="openPackageDetails(p)">{{ p.Name }}</a>
-            </td>
-            <td>{{ p.TicketsCount }}</td>
-            <td>{{ p | packageStatus }}</td>
-            <td>{{ p.Nominal.Value }}</td>
-            <td *ngIf="!hideFirstDigitColumn">{{ p.FirstDigit}}</td>
-        </tr>
-    </tbody>
-</table>
+<controls-table [options]="tableOptions"></controls-table>
 
 <ngb-pagination class="d-flex justify-content-end" 
     [collectionSize]="total" maxSize="7" [(page)]="currentPage" pageSize="20"

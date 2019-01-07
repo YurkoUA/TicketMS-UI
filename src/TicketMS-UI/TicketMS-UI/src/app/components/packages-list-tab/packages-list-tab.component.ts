@@ -10,6 +10,9 @@ import { PAGE_SIZE } from '../../../models/constants';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PackageDetailsModalComponent } from '../../pages/package/package-details/package-details-modal.component';
+import { ITable } from '../../../controls/table/models/table.interface';
+import { TableColumnType } from '../../../controls/table/models/table-column-type.enum';
+import { PackageStatusPipe } from '../../../core/pipes/package-status.pipe';
 
 @Component({
     selector: 'app-packages-list-tab',
@@ -24,6 +27,7 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
     @Output() onTotalChanged: EventEmitter<number> = new EventEmitter<number>();
 
     packagesList: Package[] = [];
+    tableOptions: ITable<Package>;
 
     get isEmptyList(): boolean {
         return this.packagesList.length == 0;
@@ -59,6 +63,7 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
         this.packageService.getPackages(this.requestModel)
             .subscribe(packagesPage => {
                 this.packagesList = packagesPage.Items;
+                this.initializeTable();
                 let id = this.currentId;
 
                 if (id && !this.modalService.hasOpenModals()) {
@@ -98,5 +103,42 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
     updatePaging(pageNumber: number): void {
         this.requestModel.Offset = (pageNumber - 1) * PAGE_SIZE;
         this.loadPackages();
+    }
+
+    initializeTable(): void {
+        this.tableOptions = {
+            items: this.packagesList,
+            styles: {
+                size: 'sm',
+                isHover: true,
+                isBordered: true,
+                withoutCard: true
+            },
+            columns: [{
+                title: 'ID',
+                property: 'Id'
+            }, {
+                title: 'Назва',
+                type: TableColumnType.Link,
+                cell: {
+                    computedText: (p: Package) => p.Name,
+                    computedUrlTree: (p: Package) => ['package', p.Id],
+                    modalClick: (p: Package) => this.openPackageDetails(p)
+                }
+            }, {
+                title: 'Квитків',
+                property: 'TicketsCount'
+            }, {
+                title: 'Статус',
+                computedProperty: (p: Package) => new PackageStatusPipe().transform(p)
+            }, {
+                title: 'Номінал',
+                computedProperty: (p: Package) => p.Nominal.Value
+            }, {
+                title: 'Перша цифра',
+                property: 'FirstDigit',
+                isHidden: this.hideFirstDigitColumn
+            }]
+        };
     }
 }

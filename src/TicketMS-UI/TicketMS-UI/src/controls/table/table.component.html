@@ -1,9 +1,9 @@
-<div class="card" *ngIf="options">
-    <div class="card-header">
+<div [class.card]="options.styles.withoutCard == undefined || options.styles.withoutCard == false" *ngIf="options">
+    <div class="card-header" *ngIf="options.styles.withoutCard == undefined || options.styles.withoutCard == false">
         {{options.headerText}}: {{length}} шт.
     </div>
 
-    <div class="card-body">
+    <div [class.card-body]="options.styles.withoutCard == undefined || options.styles.withoutCard == false">
         <div [class.table-responsive]="options.styles.isResponsive">
             <table class="table"    [class.table-hover]="options.styles.isHover" 
                                     [class.table-bordered]="options.styles.isBordered" 
@@ -12,7 +12,7 @@
 
                 <thead>
                     <tr>
-                        <th *ngFor="let c of options.columns">
+                        <th *ngFor="let c of visibleColumns">
                             {{c.title}}
                         </th>
                     </tr>
@@ -20,7 +20,7 @@
 
                 <tbody>
                     <tr *ngFor="let i of options.items" [ngClass]="getRowClass(i)">
-                        <td *ngFor="let col of options.columns">
+                        <td *ngFor="let col of visibleColumns">
                             <span *ngIf="!col.type || col.type == TableColumnType.Text">
                                 {{getCellTextValue(i, col)}}
                             </span>

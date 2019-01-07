@@ -6,39 +6,7 @@
 </div>
 
 <div class="modal-body">
-    <div class="card">
-        <div class="card-header">
-            Список пачок: {{ packagesList.length }} шт.
-        </div>
-
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-sm table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Назва</th>
-                            <th>Квитків</th>
-                            <th>Статус</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr *ngFor="let p of packagesList">
-                            <td>{{ p.Id }}</td>
-                            <td>{{ p.Name }}</td>
-                            <td>{{ p.TicketsCount }}</td>
-                            <td>
-                                <span>{{ p.IsOpened ? "Відкрита" : "Закрита" }}</span>
-                                <span> / </span>
-                                <span>{{ p.IsSpecial ? "Спеціальна" : "Звичайна" }}</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    <controls-table [options]="tableOptions"></controls-table>
 </div>
 
 <div class="modal-footer">

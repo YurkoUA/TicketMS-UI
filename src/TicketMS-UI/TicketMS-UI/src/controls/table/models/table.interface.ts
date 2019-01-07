@@ -7,5 +7,5 @@ export interface ITable<TItem> {
 
     columns: ITableColumn[];
     styles: ITableStyles;
-    headerText: string;
+    headerText?: string;
 }
