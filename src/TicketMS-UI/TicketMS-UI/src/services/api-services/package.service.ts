@@ -42,6 +42,10 @@ export class PackageService extends BaseRestApiService {
         return this.get('Get', { id: id });
     }
 
+    findPackage(name: string): Observable<Package[]> {
+        return this.get('Find', { Expression: name });
+    }
+
     createPackage(packageModel: PackageCreateModel): Observable<Identifier> {
         return this.post('', packageModel);
     }

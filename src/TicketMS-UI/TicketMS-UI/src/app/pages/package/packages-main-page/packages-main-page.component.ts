@@ -9,6 +9,7 @@ import { PackageService } from '../../../../services/api-services/package.servic
 import { PackagesGetListModel } from '../../../../models/packages-get-list.model';
 import { UiUtilService } from '../../../../services/ui-services/ui-util.service';
 import { PackageCreateModalComponent } from '../package-create/package-create-modal.component';
+import { PackageSearchModalComponent } from '../package-search/package-search-modal.component';
 
 @Component({
     selector: 'app-packages-main-page',
@@ -57,8 +58,12 @@ export class PackagesMainPageComponent extends BasePage implements OnInit, OnDes
     }
 
     openCreateModal(): void {
-        this.openModal(PackageCreateModalComponent, {
-            
+        this.openModal(PackageCreateModalComponent, {});
+    }
+
+    openSearchModal(): void {
+        this.openModal(PackageSearchModalComponent, {
+            size: 'lg'
         });
     }
 }

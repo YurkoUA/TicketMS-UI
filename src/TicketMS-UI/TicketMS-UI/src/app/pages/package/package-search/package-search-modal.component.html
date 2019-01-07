@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title">Пошук пачок</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form class="form-inline">
+        <input type="text" id="packageName" name="packageName" class="form-control col-md-8 mb-2" 
+            [(ngModel)]="packageName" />
+    
+        <button type="button" class="btn btn-primary col-md-3 mb-2 float-right" 
+            [disabled]="isSearchDisabled" (click)="findPackages()">Пошук</button>
+    </form>
+
+    <controls-table [options]="tableOptions" *ngIf="!isEmpty"></controls-table>
+
+    <div class="alert alert-danger" role="alert" *ngIf="isEmpty && isDirty">
+        За запитом "{{packageName}}" пачок не знайдено!
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="closeModal()">Закрити</button>
+</div>

@@ -6,7 +6,8 @@
         <div class="list-group">
             <a class="list-group-item" 
                 [urlTree]="['package', 'create']" (modalClick)="openCreateModal()" *ngIf="isAdmin">Створити пачку</a>
-            <a href="" class="list-group-item">Пошук пачок</a>
+            <a class="list-group-item" 
+                [urlTree]="['package', 'search']" (modalClick)="openSearchModal()">Пошук пачок</a>
             <a href="" class="list-group-item">Фільтр</a>
         </div>
     </div>
