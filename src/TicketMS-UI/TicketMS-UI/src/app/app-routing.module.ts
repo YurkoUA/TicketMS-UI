@@ -10,6 +10,7 @@ import { LogoutGuard } from '../core/guards/log-out.guard';
 import { SeriesListPageComponent } from './pages/serial/series-list/series-list-page.component';
 import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
 import { PackagesMainPageComponent } from './pages/package/packages-main-page/packages-main-page.component';
+import { TicketsListPageComponent } from './pages/ticket/tickets-list/tickets-list-page.component';
 
 const routes: Routes = [
     { path: '', component: MainPageComponent },
@@ -24,6 +25,9 @@ const routes: Routes = [
 
     { path: 'package', component: PackagesMainPageComponent },
     { path: 'package/:id', component: PackagesMainPageComponent },
+
+    { path: 'ticket', component: TicketsListPageComponent },
+    { path: 'ticket/:type', component: TicketsListPageComponent },
 
     { path: '**', redirectTo: '/' }
 ];

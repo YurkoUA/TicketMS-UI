@@ -37,6 +37,7 @@ import { PackageCreateModalComponent } from './pages/package/package-create/pack
 import { ControlsModule } from '../controls/controls.module';
 import { TicketsListSmModalComponent } from './pages/ticket/tickets-list-sm/tickets-list-sm-modal.component';
 import { PackageSearchModalComponent } from './pages/package/package-search/package-search-modal.component';
+import { TicketsListPageComponent } from './pages/ticket/tickets-list/tickets-list-page.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import { PackageSearchModalComponent } from './pages/package/package-search/pack
         PackageSpecialEditComponent,
         PackageCreateModalComponent,
         TicketsListSmModalComponent,
-        PackageSearchModalComponent
+        PackageSearchModalComponent,
+        TicketsListPageComponent
     ],
     imports: [
         CoreModule,

@@ -19,7 +19,7 @@ export class TableComponent implements OnInit {
     }
 
     get length(): number {
-        return this.options.items.length;
+        return this.options.itemsTotalCount || this.options.items.length;
     }
 
     get showInsideCard(): boolean {

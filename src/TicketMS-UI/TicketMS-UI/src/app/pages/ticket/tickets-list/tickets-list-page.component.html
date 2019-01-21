@@ -1,0 +1,23 @@
+<h2>{{ pageTitle }}</h2>
+<hr />
+
+<p>
+    <a [routerLink]="['/ticket/all']">Всі</a>
+    <span> | </span>
+    <a [routerLink]="['/ticket/happy']">Щасливі</a>
+    <span> | </span>
+    <a [routerLink]="['/ticket/unallocated']">Нерозподілені</a>
+    <span> | </span>
+    <a [routerLink]="['/ticket/duplicates']">З однаковими номерами</a>
+    <span> | </span>
+    <a [routerLink]="['/ticket/reversible']">Дзеркальні</a>
+    <span> | </span>
+    <a [routerLink]="['/ticket/consistent']">Послідовні</a>
+</p>
+
+<controls-table [options]="tableOptions"></controls-table>
+
+<ngb-pagination class="d-flex justify-content-end" 
+    [collectionSize]="totalCount" maxSize="7" [(page)]="currentPage" pageSize="20"
+    (pageChange)="pagingClick($event)"
+    *ngIf="showPagination"></ngb-pagination>
