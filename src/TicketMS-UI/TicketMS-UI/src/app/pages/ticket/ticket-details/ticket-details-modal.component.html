@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h4 class="modal-title" *ngIf="model.Id">
+        Квиток №{{ model.Number }}
+        <small *ngIf="model.IsHappy == true">
+            Щасливий
+        </small>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div *ngIf="!isEditMode && model.Id">
+        <dl class="row">
+            <dt class="col-md-4 col-sm-12">Номер</dt>
+            <dd class="col-md-8 col-sm-12">{{ model.Number }}</dd>
+
+            <dt class="col-md-4 col-sm-12" *ngIf="model.Package">Пачка</dt>
+            <dd class="col-md-8 col-sm-12" *ngIf="model.Package">{{ model.Package.Name }}</dd>
+
+            <dt class="col-md-4 col-sm-12">Колір</dt>
+            <dd class="col-md-8 col-sm-12">{{ model.Color.Name }}</dd>
+
+            <dt class="col-md-4 col-sm-12">Серія</dt>
+            <dd class="col-md-8 col-sm-12">{{ model.Serial.Name }}</dd>
+
+            <dt class="col-md-4 col-sm-12">Номінал</dt>
+            <dd class="col-md-8 col-sm-12">{{ model.Nominal.Value | currency }}</dd>
+
+            <dt class="col-md-4 col-sm-12" *ngIf="model.Date">Дата</dt>
+            <dd class="col-md-8 col-sm-12" *ngIf="model.Date">{{ model.Date }}</dd>
+
+            <dt class="col-md-4 col-sm-12" *ngIf="model.Note">Примітка</dt>
+            <dd class="col-md-8 col-sm-12" *ngIf="model.Note">{{ model.Note }}</dd>
+
+            <dt class="col-md-4 col-sm-12">Додано</dt>
+            <dd class="col-md-8 col-sm-12">{{ model.CreatedDate | date: 'dd MMMM yyyy hh:mm' }}</dd>
+
+            <dt class="col-md-4 col-sm-12" *ngIf="model.DuplicatesCount">
+                Квитків з таким же номером
+            </dt>
+            <dd class="col-md-8 col-sm-12" *ngIf="model.DuplicatesCount">
+                {{ model.DuplicatesCount }}
+            </dd>
+        </dl>
+
+        <div *ngIf="isEditMode">
+            <!-- TODO: -->
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" *ngIf="!isEditMode && model.Id">
+    <button type="button" class="btn btn-danger"
+        (click)="deleteTicket()" *ngIf="canBeDeleted && isAdmin">Видалити</button>
+</div>

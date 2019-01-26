@@ -13,6 +13,8 @@ import { PAGE_SIZE } from '../../../../models/constants';
 import { PagingResponseModel } from '../../../../models/paging-response.model';
 import { ITable } from '../../../../controls/table/models/table.interface';
 import { TableColumnType } from '../../../../controls/table/models/table-column-type.enum';
+import { TicketDetailsModalComponent } from '../ticket-details/ticket-details-modal.component';
+import { isNumber } from 'util';
 
 @Component({
     selector: 'app-tickets-list-page',
@@ -52,9 +54,24 @@ export class TicketsListPageComponent extends BasePage implements OnInit {
 
     ngOnInit(): void {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.type = this.activeRoute.snapshot.params['type'] || TicketsListType.All;
-        this.initializePageProperties(this.type);
+        this.resolvePageType();
         this.loadTickets();
+    }
+
+    resolvePageType(): void {
+        let typeUrl = this.activeRoute.snapshot.params['type'];
+
+        if (isNumber(typeUrl)) {
+            this.type = TicketsListType.All;
+        } else {
+            this.type = this.activeRoute.snapshot.params['type'] || TicketsListType.All;
+        }
+
+        this.initializePageProperties(this.type);
+    }
+
+    resolveTicketId(id: number): void {
+        // TODO:
     }
 
     initializePageProperties(type: TicketsListType): void {
@@ -139,7 +156,8 @@ export class TicketsListPageComponent extends BasePage implements OnInit {
                 type: TableColumnType.Link,
                 cell: {
                     computedText: (t: Ticket) => t.Number,
-                    computedUrlTree: (t: Ticket) => ['ticket', t.Id]
+                    computedUrlTree: (t: Ticket) => ['ticket', t.Id],
+                    modalClick: (t: Ticket) => this.openTicketDetails(t)
                 }
             }, {
                 title: 'Колір',
@@ -158,5 +176,18 @@ export class TicketsListPageComponent extends BasePage implements OnInit {
                 property: 'Note'
             }]
         };
+    }
+
+    openTicketDetails(ticket: Ticket): void {
+        this.setUrlId('ticket', ticket.Id);
+
+        this.openModalChangingUrl(TicketDetailsModalComponent, ['ticket'], {
+            onLoad: (comp: TicketDetailsModalComponent) => comp.loadTicket(ticket.Id),
+            onClose: (editedTicket: Ticket) => {
+                if (editedTicket && editedTicket.Id) {
+                    this.ticketsList.replace(ticket, editedTicket);
+                }
+            }
+        });
     }
 }

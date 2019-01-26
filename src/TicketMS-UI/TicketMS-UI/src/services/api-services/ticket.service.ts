@@ -41,4 +41,8 @@ export class TicketService extends BaseRestApiService {
     getByPackage(packageId: number): Observable<Ticket[]> {
         return this.get('ByPackage', { packageId: packageId });
     }
+    
+    getById(id: number): Observable<Ticket> {
+        return this.get('Get', { id: id });
+    }
 }

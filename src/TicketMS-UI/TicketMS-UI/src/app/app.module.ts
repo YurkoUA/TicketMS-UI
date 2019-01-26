@@ -38,6 +38,7 @@ import { ControlsModule } from '../controls/controls.module';
 import { TicketsListSmModalComponent } from './pages/ticket/tickets-list-sm/tickets-list-sm-modal.component';
 import { PackageSearchModalComponent } from './pages/package/package-search/package-search-modal.component';
 import { TicketsListPageComponent } from './pages/ticket/tickets-list/tickets-list-page.component';
+import { TicketDetailsModalComponent } from './pages/ticket/ticket-details/ticket-details-modal.component';
 
 @NgModule({
     declarations: [
@@ -68,7 +69,8 @@ import { TicketsListPageComponent } from './pages/ticket/tickets-list/tickets-li
         PackageCreateModalComponent,
         TicketsListSmModalComponent,
         PackageSearchModalComponent,
-        TicketsListPageComponent
+        TicketsListPageComponent,
+        TicketDetailsModalComponent
     ],
     imports: [
         CoreModule,
@@ -105,7 +107,9 @@ import { TicketsListPageComponent } from './pages/ticket/tickets-list/tickets-li
 
         ConfirmModalComponent,
 
-        TicketsListSmModalComponent
+        TicketsListSmModalComponent,
+
+        TicketDetailsModalComponent
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
