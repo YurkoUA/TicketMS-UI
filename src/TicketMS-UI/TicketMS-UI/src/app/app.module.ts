@@ -39,6 +39,7 @@ import { TicketsListSmModalComponent } from './pages/ticket/tickets-list-sm/tick
 import { PackageSearchModalComponent } from './pages/package/package-search/package-search-modal.component';
 import { TicketsListPageComponent } from './pages/ticket/tickets-list/tickets-list-page.component';
 import { TicketDetailsModalComponent } from './pages/ticket/ticket-details/ticket-details-modal.component';
+import { TicketCreatePageComponent } from './pages/ticket/ticket-create/ticket-create-page.component';
 
 @NgModule({
     declarations: [
@@ -70,7 +71,8 @@ import { TicketDetailsModalComponent } from './pages/ticket/ticket-details/ticke
         TicketsListSmModalComponent,
         PackageSearchModalComponent,
         TicketsListPageComponent,
-        TicketDetailsModalComponent
+        TicketDetailsModalComponent,
+        TicketCreatePageComponent
     ],
     imports: [
         CoreModule,

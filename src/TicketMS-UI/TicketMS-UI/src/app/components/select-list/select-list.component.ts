@@ -24,6 +24,7 @@ export class SelectListComponent implements OnInit, ControlValueAccessor, Valida
     @Input() nullItem: boolean = false;
     @Input() nullItemText: string;
     @Input() nullable: boolean = false;
+    @Input() onSelectChange: EventEmitter<number> = new EventEmitter<number>();
 
     modelIdValue: number = null;
 
@@ -39,7 +40,10 @@ export class SelectListComponent implements OnInit, ControlValueAccessor, Valida
     items: NameValueModel<any>[] = [];
     service: INameValuesService<any>;
 
-    onChange = (modelId: number) => {};
+    onChange = (modelId: number) => {
+        this.onSelectChange.emit(modelId);
+    };
+
     onTouched = () => {};
 
     constructor(private injector: Injector) {

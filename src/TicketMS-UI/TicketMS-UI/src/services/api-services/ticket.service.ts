@@ -7,6 +7,8 @@ import { Ticket } from "../../models/domain/ticket";
 import { Injectable } from "@angular/core";
 import { PagingModel } from "../../models/paging.model";
 import { PagingResponseModel } from "../../models/paging-response.model";
+import { TicketCreateModel } from "../../models/ticket-create.model";
+import { Identifier } from "../../models/identifier.model";
 
 @Injectable()
 export class TicketService extends BaseRestApiService {
@@ -44,5 +46,9 @@ export class TicketService extends BaseRestApiService {
     
     getById(id: number): Observable<Ticket> {
         return this.get('Get', { id: id });
+    }
+
+    createTicket(ticket: TicketCreateModel): Observable<Identifier> {
+        return this.post('', ticket);
     }
 }

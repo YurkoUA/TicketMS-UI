@@ -90,6 +90,12 @@ declare global {
         lastOrDefault(): T;
         exists(value: T): boolean;
         clear(): void;
+        insert(value: T, index: number): void;
+    }
+
+    interface String {
+        firstOrDefault(): string;
+        toInteger(): number;
     }
 }
 
@@ -146,4 +152,24 @@ Array.prototype.exists = function<T>(this: T[], value: T): boolean {
 
 Array.prototype.clear = function<T>(this: T[]): void {
     this.splice(0, this.length);
+}
+
+Array.prototype.insert = function<T>(this: T[], value: T, index: number): void {
+    this.splice(index, 0, value);
+}
+
+String.prototype.firstOrDefault = function(this: string): string {
+    if (this.length < 1) {
+        return null;
+    }
+
+    return this[0];
+}
+
+String.prototype.toInteger = function(this: string): number {
+    if (this == null) {
+        return null;
+    }
+
+    return parseInt(this);
 }

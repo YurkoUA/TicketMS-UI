@@ -9,6 +9,8 @@ import { PreventDefaultClickDirective } from './directives/prevent-default-click
 import { PackageStatusPipe } from './pipes/package-status.pipe';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { UrlTreeDirective } from './directives/url-tree.directive';
+import { SerialNumberValidator } from './validators/serial-number.validator.directive';
+import { TicketNumberValidator } from './validators/ticket-number.validator.directive';
 
 @NgModule({
     providers: [
@@ -21,7 +23,11 @@ import { UrlTreeDirective } from './directives/url-tree.directive';
     ],
     declarations: [
         ModalClickDirective,
+
         SerialNameValidator,
+        SerialNumberValidator,
+        TicketNumberValidator,
+
         PreventDefaultClickDirective,
         UrlTreeDirective,
 
@@ -30,7 +36,11 @@ import { UrlTreeDirective } from './directives/url-tree.directive';
     ],
     exports: [
         ModalClickDirective,
+        
         SerialNameValidator,
+        SerialNumberValidator,
+        TicketNumberValidator,
+
         PreventDefaultClickDirective,
         UrlTreeDirective,
         

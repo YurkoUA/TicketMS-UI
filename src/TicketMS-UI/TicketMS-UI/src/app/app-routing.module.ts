@@ -11,6 +11,7 @@ import { SeriesListPageComponent } from './pages/serial/series-list/series-list-
 import { ColorsListPageComponent } from './pages/color/colors-list/colors-list-page.component';
 import { PackagesMainPageComponent } from './pages/package/packages-main-page/packages-main-page.component';
 import { TicketsListPageComponent } from './pages/ticket/tickets-list/tickets-list-page.component';
+import { TicketCreatePageComponent } from './pages/ticket/ticket-create/ticket-create-page.component';
 
 const routes: Routes = [
     { path: '', component: MainPageComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
 
     { path: 'ticket', component: TicketsListPageComponent },
     { path: 'ticket/:type', component: TicketsListPageComponent },
+    { path: 'ticket-create', component: TicketCreatePageComponent },
 
     { path: '**', redirectTo: '/' }
 ];

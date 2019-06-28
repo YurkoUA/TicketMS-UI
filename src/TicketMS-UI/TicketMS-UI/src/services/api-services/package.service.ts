@@ -11,6 +11,7 @@ import { PackagesTotalModel } from '../../models/packages-total.model';
 import { PackageCreateModel } from '../../models/package-create.model';
 import { Identifier } from '../../models/identifier.model';
 import { PackageSpecialCreateModel } from '../../models/package-special-create.model';
+import { PackageFilterModel } from '../../models/package-filter.model';
 
 @Injectable()
 export class PackageService extends BaseRestApiService {
@@ -44,6 +45,10 @@ export class PackageService extends BaseRestApiService {
 
     findPackage(name: string): Observable<Package[]> {
         return this.get('Find', { Expression: name });
+    }
+
+    filterPackages(filterModel: PackageFilterModel): Observable<Package[]> {
+        return this.get('Filter', filterModel);
     }
 
     createPackage(packageModel: PackageCreateModel): Observable<Identifier> {

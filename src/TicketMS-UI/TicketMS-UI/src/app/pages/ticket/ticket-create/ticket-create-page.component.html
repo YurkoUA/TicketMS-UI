@@ -1,0 +1,100 @@
+<h2>Додати квиток</h2>
+<hr />
+
+<form #ticketForm="ngForm" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="form-group">
+        <label for="Number" class="col-form-label">Номер</label>
+
+        <input class="form-control" type="number" id="Number" name="Number" 
+            [(ngModel)]="ticketModel.Number" #ticketNumber="ngModel"
+            ticketNumber (change)="loadPackages()" />
+
+        <span class="text-danger" *ngIf="ticketNumber.touched && ticketNumber.errors?.empty">Необхідно ввести номер квитка.</span>
+        <span class="text-danger" *ngIf="ticketNumber.touched && ticketNumber.errors?.invalidLength">Номер має містити 6 цифр.</span>
+        <span class="text-danger" *ngIf="ticketNumber.touched && ticketNumber.errors?.isNaN">Номер містить недопустимі символи.</span>
+        <span class="text-danger" *ngIf="ticketNumber.touched && ticketNumber.errors?.outOfRange">Номер має бути від 000001 до 999999.</span>
+    </div>
+
+    <div class="form-group">
+        <label for="ColorId" class="col-form-label">Колір</label>
+        
+        <select id="ColorId" name="ColorId" class="form-control" 
+            [(ngModel)]="ticketModel.ColorId" #ticketColor="ngModel" (change)="loadPackages()">
+            <option *ngFor="let c of colorsList" [ngValue]="c.Value">{{ c.Name }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="SerialId" class="col-form-label">Серія</label>
+        
+        <select id="SerialId" name="SerialId" class="form-control"
+            [(ngModel)]="ticketModel.SerialId" #ticketSerial="ngModel" (change)="loadPackages()">
+            <option *ngFor="let s of seriesList" [ngValue]="s.Value">{{ s.Name }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="NominalId" class="col-form-label">Номінал</label>
+        
+        <select id="NominalId" name="NominalId" class="form-control"
+            [(ngModel)]="ticketModel.NominalId" #ticketNominal="ngModel" (change)="loadPackages()">
+            <option *ngFor="let n of nominalsList" [ngValue]="n.Value">{{ n.Name }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="PackageId" class="col-form-label">Пачка</label>
+
+        <select class="form-control">
+            <option>------------</option>
+            <option *ngFor="let p of packagesList">{{ getPackageItemText(p) }}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="SerialNumber" class="col-form-label">Номер серії</label>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{selectedSerialName}}</span>
+            </div>
+
+            <input class="form-control" type="text" id="SerialNumber" name="SerialNumber" 
+                [(ngModel)]="ticketModel.SerialNumber" #ticketSerialNumber="ngModel"
+                serialNumber />
+        </div>
+
+        <span class="text-danger" *ngIf="ticketSerialNumber.touched && ticketSerialNumber.errors?.empty">Необхідно ввести номер серії.</span>
+        <span class="text-danger" *ngIf="ticketSerialNumber.touched && ticketSerialNumber.errors?.invalidLength">Номер серії має містити 2 цифри.</span>
+        <span class="text-danger" *ngIf="ticketSerialNumber.touched && ticketSerialNumber.errors?.isNaN">Номер містить недопустимі символи.</span>
+        <span class="text-danger" *ngIf="ticketSerialNumber.touched && ticketSerialNumber.errors?.outOfRange">Номер має бути від 01 до 50.</span>
+    </div>
+
+    <div class="form-group">
+        <label for="Date" class="col-form-label">Дата</label>
+
+        <input type="text" id="Date" name="Date" [(ngModel)]="ticketModel.Date" #ticketDate="ngModel" 
+            class="form-control" ngMaxLength="32" />
+    </div>
+
+    <div class="form-group">
+        <label for="Note" class="col-form-label">Примітка</label>
+
+        <div class="input-group">
+            <input class="form-control" id="Note" name="Note" maxlength="128" [(ngModel)]="ticketModel.Note" #ticketNote="ngModel" />
+
+            <div class="input-group-append" *ngIf="notesExist">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+
+                <div class="dropdown-menu">
+                    <a *ngFor="let n of notesList; let i = index" class="dropdown-item"
+                        (click)="putNote(i)" preventDefaultClick>{{n}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="createTicket()" [disabled]="ticketForm.invalid">Створити</button>
+    </div>
+</form>
