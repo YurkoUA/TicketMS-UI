@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ColorDetailsModalComponent } from '../color-details/color-details-modal.component';
 import { ColorCreateModalComponent } from '../color-create/color-create-modal.component';
-import { ITable } from '../../../../controls/table/models/table.interface';
+import { Table } from '../../../../controls/table/models/table.model';
 import { TableColumnType } from '../../../../controls/table/models/table-column-type.enum';
 
 @Component({
@@ -19,7 +19,7 @@ import { TableColumnType } from '../../../../controls/table/models/table-column-
 export class ColorsListPageComponent extends BasePage implements OnInit {
     colorsList: Color[] = [];
 
-    tableOptions: ITable<Color>;
+    tableOptions: Table<Color>;
     isLoading: boolean = true;
 
     get isEmptyList(): boolean {

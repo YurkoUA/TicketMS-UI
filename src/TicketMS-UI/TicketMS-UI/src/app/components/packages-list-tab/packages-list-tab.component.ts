@@ -10,7 +10,7 @@ import { PAGE_SIZE } from '../../../models/constants';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PackageDetailsModalComponent } from '../../pages/package/package-details/package-details-modal.component';
-import { ITable } from '../../../controls/table/models/table.interface';
+import { Table } from '../../../controls/table/models/table.model';
 import { TableColumnType } from '../../../controls/table/models/table-column-type.enum';
 import { PackageStatusPipe } from '../../../core/pipes/package-status.pipe';
 
@@ -28,7 +28,7 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
     @Output() onNeedsRefresh: EventEmitter<any> = new EventEmitter<any>();
 
     packagesList: Package[] = [];
-    tableOptions: ITable<Package>;
+    tableOptions: Table<Package>;
 
     get isEmptyList(): boolean {
         return this.packagesList.length == 0;

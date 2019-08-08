@@ -4,10 +4,10 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../../services/authentication.service';
-import { ITable } from '../../../../controls/table/models/table.interface';
+import { Table } from '../../../../controls/table/models/table.model';
 import { Ticket } from '../../../../models/domain/ticket';
 import { TableColumnType } from '../../../../controls/table/models/table-column-type.enum';
-import { ITableCellLink } from '../../../../controls/table/models/table-cell-link.interface';
+import { TableCellLink } from '../../../../controls/table/models/table-cell-link.model';
 
 @Component({
     selector: 'app-tickets-list-sm-modal',
@@ -15,7 +15,7 @@ import { ITableCellLink } from '../../../../controls/table/models/table-cell-lin
 })
 export class TicketsListSmModalComponent extends BaseModal implements OnInit {
     title: string;
-    tableOptions: ITable<Ticket>;
+    tableOptions: Table<Ticket>;
 
     tickets: Ticket[] = [];
 

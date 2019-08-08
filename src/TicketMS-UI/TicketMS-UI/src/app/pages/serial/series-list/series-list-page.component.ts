@@ -9,7 +9,7 @@ import { BasePage } from '../../base-page';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { SerialDetailsModalComponent } from '../serial-details/serial-details-modal.component';
 import { SerialCreateModalComponent } from '../serial-create/serial-create-modal.component';
-import { ITable } from '../../../../controls/table/models/table.interface';
+import { Table } from '../../../../controls/table/models/table.model';
 import { TableColumnType } from '../../../../controls/table/models/table-column-type.enum';
 
 @Component({
@@ -19,7 +19,7 @@ import { TableColumnType } from '../../../../controls/table/models/table-column-
 export class SeriesListPageComponent extends BasePage implements OnInit {
     seriesList: Serial[] = [];
 
-    tableOptions: ITable<Serial>;
+    tableOptions: Table<Serial>;
     isLoading: boolean = true;
 
     get isEmptyList(): boolean {

@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { PackageService } from '../../../../services/api-services/package.service';
 import { Package } from '../../../../models/domain/package';
-import { ITable } from '../../../../controls/table/models/table.interface';
+import { Table } from '../../../../controls/table/models/table.model';
 
 @Component({
     selector: 'app-package-search-modal',
@@ -15,7 +15,7 @@ import { ITable } from '../../../../controls/table/models/table.interface';
 export class PackageSearchModalComponent extends BaseModal implements OnInit {
     _packagesList: Package[] = [];
     packageName: string;
-    tableOptions: ITable<Package>;
+    tableOptions: Table<Package>;
     isDirty: boolean = false;
 
     get packagesList(): Package[] {

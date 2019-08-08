@@ -11,7 +11,7 @@ import { PagingModel } from '../../../../models/paging.model';
 import { Ticket } from '../../../../models/domain/ticket';
 import { PAGE_SIZE } from '../../../../models/constants';
 import { PagingResponseModel } from '../../../../models/paging-response.model';
-import { ITable } from '../../../../controls/table/models/table.interface';
+import { Table } from '../../../../controls/table/models/table.model';
 import { TableColumnType } from '../../../../controls/table/models/table-column-type.enum';
 import { TicketDetailsModalComponent } from '../ticket-details/ticket-details-modal.component';
 import { isNumber } from 'util';
@@ -30,7 +30,7 @@ export class TicketsListPageComponent extends BasePage implements OnInit {
     totalCount: number;
 
     currentPage: number = 1;
-    tableOptions: ITable<Ticket>;
+    tableOptions: Table<Ticket>;
 
     get isPaginable(): boolean {
         return this.type == TicketsListType.All || this.type == TicketsListType.Happy;

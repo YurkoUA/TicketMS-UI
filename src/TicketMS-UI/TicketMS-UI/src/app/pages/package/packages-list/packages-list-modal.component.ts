@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ITable } from '../../../../controls/table/models/table.interface';
+import { Table } from '../../../../controls/table/models/table.model';
 
 @Component({
     selector: 'app-packages-list-modal',
@@ -14,7 +14,7 @@ import { ITable } from '../../../../controls/table/models/table.interface';
 export class PackagesListModalComponent extends BaseModal implements OnInit {
     packagesList: Package[] = [];
     title: string;
-    tableOptions: ITable<Package>;
+    tableOptions: Table<Package>;
 
     constructor(activeModal: NgbActiveModal,
         modalService: NgbModal,

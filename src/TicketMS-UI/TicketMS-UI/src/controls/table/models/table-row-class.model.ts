@@ -1,4 +1,4 @@
-export interface ITableRowClass {
+export class TableRowClass {
     className: string;
     computed: Function;
 }

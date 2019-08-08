@@ -1,4 +1,4 @@
-export class ITableCellLink {
+export class TableCellLink {
     computedUrlTree: Function;
     computedText: Function;
 }

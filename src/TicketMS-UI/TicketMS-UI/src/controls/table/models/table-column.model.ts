@@ -1,6 +1,6 @@
 import { TableColumnType } from "./table-column-type.enum";
 
-export interface ITableColumn {
+export class TableColumn {
     title: string;
     property?: string;
     computedProperty?: Function;

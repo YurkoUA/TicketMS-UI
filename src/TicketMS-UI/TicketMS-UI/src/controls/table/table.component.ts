@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ITable } from './models/table.interface';
-import { ITableColumn } from './models/table-column.interface';
+import { Table } from './models/table.model';
+import { TableColumn } from './models/table-column.model';
 import { TableColumnType } from './models/table-column-type.enum';
 
 @Component({
@@ -10,7 +10,7 @@ import { TableColumnType } from './models/table-column-type.enum';
 export class TableComponent implements OnInit {
     TableColumnType = TableColumnType;
 
-    @Input() options: ITable<any>;
+    @Input() options: Table<any>;
 
     constructor() { }
 
@@ -26,7 +26,7 @@ export class TableComponent implements OnInit {
         return this.options.styles.withoutCard == undefined || this.options.styles.withoutCard == false
     }
 
-    get visibleColumns(): ITableColumn[] {
+    get visibleColumns(): TableColumn[] {
         return this.options.columns.filter(c => !c.isHidden);
     }
 
@@ -47,7 +47,7 @@ export class TableComponent implements OnInit {
         return ngClassObj;
     }
 
-    getCellTextValue(item: any, column: ITableColumn): string {
+    getCellTextValue(item: any, column: TableColumn): string {
         if (column.property) {
             return item[column.property];
         }
@@ -57,11 +57,11 @@ export class TableComponent implements OnInit {
         }
     }
 
-    getLinkUrlTreeArray(item: any, column: ITableColumn): string {
+    getLinkUrlTreeArray(item: any, column: TableColumn): string {
         return column.cell.computedUrlTree(item);
     }
 
-    getLinkText(item: any, column: ITableColumn): string {
+    getLinkText(item: any, column: TableColumn): string {
         return column.cell.computedText(item);
     }
 }
