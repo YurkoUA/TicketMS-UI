@@ -1,18 +1,9 @@
 import { BaseModal } from "./base-modal";
-import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { AuthenticationService } from "../../services/authentication.service";
-import { Location } from "@angular/common";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Injector } from "@angular/core";
 
 export abstract class BaseDetailsModal<TModel> extends BaseModal {
-    constructor(activeModal: NgbActiveModal,
-        location: Location,
-        activeRoute: ActivatedRoute,
-        router: Router,
-        authenticationService: AuthenticationService,
-        modalService: NgbModal) {
-
-        super(activeModal, location, activeRoute, router, authenticationService, modalService);
+    constructor(injector: Injector) {
+        super(injector);
     }
 
     abstract get canBeDeleted(): boolean;

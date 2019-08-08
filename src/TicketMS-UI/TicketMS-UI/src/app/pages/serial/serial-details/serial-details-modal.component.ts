@@ -1,9 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injector } from '@angular/core';
 import { SerialService } from '../../../../services/api-services/serial.service';
 import { Serial } from '../../../../models/domain/serial';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
@@ -21,17 +18,12 @@ export class SerialDetailsModalComponent extends BaseDetailsModal<Serial> {
     parentComponent: SeriesListPageComponent;
 
     constructor(
-        activeModal: NgbActiveModal,
-        location: Location,
-        authService: AuthenticationService,
-        modalService: NgbModal,
-        router: Router,
-        activeRoute: ActivatedRoute,
+        injector: Injector,
         private serialService: SerialService,
         private toastr: ToastrService,
         private packageService: PackageService) {
 
-        super(activeModal, location, activeRoute, router, authService, modalService);
+        super(injector);
     }
 
     get canBeDeleted(): boolean {

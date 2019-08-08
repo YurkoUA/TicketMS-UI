@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { SerialService } from '../../../../services/api-services/serial.service';
 import { Serial } from '../../../../models/domain/serial';
 import { Subject, Observable } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Location } from '@angular/common';
 import { BasePage } from '../../base-page';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { SerialDetailsModalComponent } from '../serial-details/serial-details-modal.component';
@@ -26,14 +23,8 @@ export class SeriesListPageComponent extends BasePage implements OnInit {
         return this.seriesList.length == 0;
     }
 
-    constructor(router: Router,
-        activatedRoute: ActivatedRoute,
-        location: Location,
-        modalService: NgbModal,
-        authService: AuthenticationService,
-        private serialService: SerialService) {
-
-        super(router, activatedRoute, location, modalService, authService);
+    constructor(injector: Injector, private serialService: SerialService) {
+        super(injector);
     }
 
     ngOnInit(): void {

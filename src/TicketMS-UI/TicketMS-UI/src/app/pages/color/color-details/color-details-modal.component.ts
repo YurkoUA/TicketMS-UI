@@ -1,9 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Location } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, Injector } from '@angular/core';
 import { Color } from '../../../../models/domain/color';
-import { AuthenticationService } from '../../../../services/authentication.service';
 import { ColorsListPageComponent } from '../colors-list/colors-list-page.component';
 import { BaseDetailsModal } from '../../base-details-modal';
 import { IConfirmOptions } from '../../../../models/interfaces/confirm-options.interface';
@@ -19,17 +15,12 @@ import { PackagesListModalComponent } from '../../package/packages-list/packages
 export class ColorDetailsModalComponent extends BaseDetailsModal<Color> {
     parentComponent: ColorsListPageComponent;
 
-    constructor(activeModal: NgbActiveModal,
-        modalService: NgbModal,
-        location: Location,
-        authService: AuthenticationService,
-        router: Router,
-        activeRoute: ActivatedRoute,
+    constructor(injector: Injector,
         private colorService: ColorService,
         private packageService: PackageService,
         private toastr: ToastrService) {
 
-        super(activeModal, location, activeRoute, router, authService, modalService);
+        super(injector);
     }
 
     get canBeDeleted(): boolean {

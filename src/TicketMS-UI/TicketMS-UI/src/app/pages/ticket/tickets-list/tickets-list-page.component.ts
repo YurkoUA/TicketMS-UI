@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { BasePage } from '../../base-page';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../../../../services/authentication.service';
 import { UiUtilService } from '../../../../services/ui-services/ui-util.service';
 import { TicketService } from '../../../../services/api-services/ticket.service';
 import { TicketsListType } from '../../../../models/enums/tickets-list-type.enum';
@@ -41,15 +37,11 @@ export class TicketsListPageComponent extends BasePage implements OnInit {
     }
 
     constructor(
-        router: Router,
-        activeRoute: ActivatedRoute,
-        location: Location,
-        modalService: NgbModal,
-        authenticationService: AuthenticationService,
+        injector: Injector,
         private ticketService: TicketService,
         private uiUtils: UiUtilService
     ) {
-        super(router, activeRoute, location, modalService, authenticationService);
+        super(injector);
     }
 
     ngOnInit(): void {

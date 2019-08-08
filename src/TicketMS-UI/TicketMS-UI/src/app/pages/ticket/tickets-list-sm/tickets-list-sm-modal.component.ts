@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { BaseModal } from '../../base-modal';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
@@ -19,14 +19,8 @@ export class TicketsListSmModalComponent extends BaseModal implements OnInit {
 
     tickets: Ticket[] = [];
 
-    constructor(activeModal: NgbActiveModal,
-        modalService: NgbModal,
-        location: Location,
-        activeRoute: ActivatedRoute,
-        router: Router,
-        authService: AuthenticationService) {
-
-        super(activeModal, location, activeRoute, router, authService, modalService);
+    constructor(injector: Injector) {
+        super(injector);
     }
 
     ngOnInit(): void {

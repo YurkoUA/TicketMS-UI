@@ -3,17 +3,16 @@ import { Location } from "@angular/common";
 import { BaseComponent } from "../base-component";
 import { AuthenticationService } from "../../services/authentication.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Injector } from "@angular/core";
 
 export abstract class BaseModal extends BaseComponent {
-    constructor(protected activeModal: NgbActiveModal,
-        location: Location,
-        activeRoute: ActivatedRoute,
-        router: Router,
-        authenticationService: AuthenticationService,
-        modalService: NgbModal) {
+    constructor(injector: Injector) {
 
-        super(authenticationService, modalService, location, activeRoute, router);
+        super(injector);
+        this.activeModal = injector.get(NgbActiveModal);
     }
+
+    protected activeModal: NgbActiveModal;
 
     closeModal(result?: any): void {
         this.activeModal.close(result || true);

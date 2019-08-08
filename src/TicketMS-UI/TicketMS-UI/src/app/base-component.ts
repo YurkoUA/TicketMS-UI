@@ -5,14 +5,22 @@ import { ConfirmModalComponent } from "./components/confirm-modal/confirm-modal.
 import { IModalOpenOptions } from "../models/interfaces/modal-open-options.interface";
 import { Location } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Injector } from "@angular/core";
 
 export abstract class BaseComponent {
-    constructor(protected authenticationService: AuthenticationService,
-        protected modalService: NgbModal,
-        protected location: Location,
-        protected activeRoute: ActivatedRoute,
-        protected router: Router) {
+    constructor(injector: Injector) {
+        this.authenticationService = injector.get(AuthenticationService);
+        this.modalService = injector.get(NgbModal);
+        this.location = injector.get(Location);
+        this.activeRoute = injector.get(ActivatedRoute);
+        this.router = injector.get(Router);
     }
+
+    protected authenticationService: AuthenticationService;
+    protected modalService: NgbModal;
+    protected location: Location;
+    protected activeRoute: ActivatedRoute;
+    protected router: Router;
 
     get isAuthenticated(): boolean {
         return this.authenticationService.isAuthenticated();

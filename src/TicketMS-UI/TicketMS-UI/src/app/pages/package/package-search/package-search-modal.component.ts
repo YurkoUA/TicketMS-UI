@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { BaseModal } from '../../base-modal';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../../../../services/authentication.service';
 import { PackageService } from '../../../../services/api-services/package.service';
 import { Package } from '../../../../models/domain/package';
 import { Table } from '../../../../controls/table/models/table.model';
@@ -34,15 +30,8 @@ export class PackageSearchModalComponent extends BaseModal implements OnInit {
         return this.packagesList.length == 0;
     }
 
-    constructor(activeModal: NgbActiveModal,
-        modalService: NgbModal,
-        location: Location,
-        activeRoute: ActivatedRoute,
-        router: Router,
-        authService: AuthenticationService,
-        private packageService: PackageService) {
-
-        super(activeModal, location, activeRoute, router, authService, modalService);
+    constructor(injector: Injector, private packageService: PackageService) {
+        super(injector);
     }
 
     ngOnInit(): void {

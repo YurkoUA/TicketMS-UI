@@ -1,9 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, ViewChild, Injector } from '@angular/core';
 import { BasePage } from '../../base-page';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthenticationService } from '../../../../services/authentication.service';
 import { TicketService } from '../../../../services/api-services/ticket.service';
 import { SelectListType } from '../../../../models/enums/select-list-type.enum';
 import { NgForm } from '@angular/forms';
@@ -38,11 +34,7 @@ export class TicketCreatePageComponent extends BasePage implements OnInit {
     deleteNote: boolean = true;
 
     constructor(
-        router: Router,
-        activeRoute: ActivatedRoute,
-        location: Location,
-        modalService: NgbModal,
-        authenticationService: AuthenticationService,
+        injector: Injector,
         private nominalService: NominalService,
         private colorService: ColorService,
         private serialService: SerialService,
@@ -50,7 +42,7 @@ export class TicketCreatePageComponent extends BasePage implements OnInit {
         private ticketService: TicketService,
         private toastr: ToastrService
     ) {
-        super(router, activeRoute, location, modalService, authenticationService);
+        super(injector);
     }
 
     get selectedSerialName(): string {

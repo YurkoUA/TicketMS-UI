@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { ColorService } from '../../../../services/api-services/color.service';
 import { Color } from '../../../../models/domain/color';
 import { Subject } from 'rxjs';
@@ -26,14 +26,8 @@ export class ColorsListPageComponent extends BasePage implements OnInit {
         return this.colorsList.length == 0;
     }
 
-    constructor(router: Router,
-        activatedRoute: ActivatedRoute,
-        location: Location,
-        modalService: NgbModal,
-        authService: AuthenticationService,
-        private colorService: ColorService) {
-
-        super(router, activatedRoute, location, modalService, authService);
+    constructor(injector: Injector, private colorService: ColorService) {
+        super(injector);
     }
 
     ngOnInit(): void {

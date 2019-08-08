@@ -1,9 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, QueryList, Injector } from '@angular/core';
 import { BasePage } from '../../base-page';
-import { AuthenticationService } from '../../../../services/authentication.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { PackagesTotalModel } from '../../../../models/packages-total.model';
 import { PackageService } from '../../../../services/api-services/package.service';
 import { PackagesGetListModel } from '../../../../models/packages-get-list.model';
@@ -28,15 +24,11 @@ export class PackagesMainPageComponent extends BasePage implements OnInit, OnDes
     private tabComponents: QueryList<PackagesListTabComponent>;
 
     constructor(
-        router: Router,
-        activeRoute: ActivatedRoute,
-        location: Location,
-        modalService: NgbModal,
-        authenticationService: AuthenticationService,
+        injector: Injector,
         private packageService: PackageService,
         private uiUtils: UiUtilService
     ) {
-        super(router, activeRoute, location, modalService, authenticationService);
+        super(injector);
     }
 
     ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, Inject } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, Inject, Injector } from '@angular/core';
 import { BaseComponent } from '../../base-component';
 import { PackagesGetListModel } from '../../../models/packages-get-list.model';
 import { AuthenticationService } from '../../../services/authentication.service';
@@ -38,14 +38,8 @@ export class PackagesListTabComponent extends BaseComponent implements OnInit {
         return this.total > PAGE_SIZE;
     }
 
-    constructor(authenticationService: AuthenticationService,
-        modalService: NgbModal,
-        router: Router,
-        activeRoute: ActivatedRoute,
-        location: Location,
-        private packageService: PackageService) {
-
-        super(authenticationService, modalService, location, activeRoute, router);
+    constructor(injector: Injector, private packageService: PackageService) {
+        super(injector);
     }
 
     ngOnInit(): void {

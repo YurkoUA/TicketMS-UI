@@ -15,14 +15,15 @@ export class AuthPanelComponent {
     }
 
     get userName(): string {
-        if (this.isAuthenticated)
+        if (this.isAuthenticated) {
             return this.authService.getUser().UserName;
-
+        }
         return '';
     }
 
     signOut(): void {
-        if (confirm('Are you sure?') === true)
+        if (confirm('Are you sure?') === true) {
             this.authService.resetAuthentication();
+        }
     }
 }

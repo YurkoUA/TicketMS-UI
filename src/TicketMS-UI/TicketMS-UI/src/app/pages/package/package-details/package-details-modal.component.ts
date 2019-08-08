@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { Location } from '@angular/common';
 import { BaseDetailsModal } from '../../base-details-modal';
 import { Package } from '../../../../models/domain/package';
@@ -20,17 +20,12 @@ export class PackageDetailsModalComponent extends BaseDetailsModal<Package> {
     parentComponent: PackagesListTabComponent;
 
     constructor(
-        activeModal: NgbActiveModal,
-        location: Location,
-        authService: AuthenticationService,
-        modalService: NgbModal,
-        router: Router,
-        activeRoute: ActivatedRoute,
+        injector: Injector,
         private toastr: ToastrService,
         private packageService: PackageService,
         private ticketService: TicketService) {
 
-        super(activeModal, location, activeRoute, router, authService, modalService);
+        super(injector);
     }
 
     get canBeDeleted(): boolean {
